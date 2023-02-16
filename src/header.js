@@ -6,13 +6,13 @@ import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-
 function Header() {
     return (
       <div className="App">
-        <div className='header' style={{paddingLeft:'15%', paddingRight:'15%', marginBottom:'50px'}}>
+        <div className='header' style={{paddingLeft:'15%', paddingRight:'15%', marginBottom:'50px', marginTop:'40px'}}>
           <div style={{display:'grid', gridTemplateColumns:'1fr 1fr'}}>
             <Link to="/">
               <h1 style={{cursor:'pointer', fontSize:'40px'}}>로고</h1>
             </Link>
             <div>
-              <button className='cocktail-btn' style={{float:'right', marginRight:'0px', border:'1px solid black', borderRadius:'5px', fontWeight:'800', backgroundColor:'white', position:'relative', top:'12px'}}>로그인</button>
+              <button className='login-btn'>로그인</button>
             </div>
           </div>
   

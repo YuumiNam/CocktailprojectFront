@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
-import '../App.css'
+import '../App.css';
+import './cocktail.css';
 import axios from 'axios';
 import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
 
@@ -20,14 +21,14 @@ function Cocktail() {
 
     return (
     <div>
-        <div style={{textAlign:'center', marginTop:'50px', marginBottom:'20px'}}>
+        <div className="cocktail-btn-box">
             <button className='cocktail-btn'>도수</button>
             <button className='cocktail-btn'>재료수</button>
             <button className='cocktail-btn'>베이스주</button>
             <button className='cocktail-btn'>정렬</button>
         </div>
 
-        <div style={{paddingLeft:'15%', paddingRight:'15%', display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', rowGap:'100px'}}>
+        <div className="cocktail-list">
             {
                 cocktail.map(function(cocktail, i) {
                     return (
