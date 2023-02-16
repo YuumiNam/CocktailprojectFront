@@ -27,12 +27,12 @@ function Cocktail() {
             <button className='cocktail-btn'>정렬</button>
         </div>
 
-        <div style={{paddingLeft:'10%', paddingRight:'10%', display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr 1fr', rowGap:'100px'}}>
+        <div style={{paddingLeft:'15%', paddingRight:'15%', display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', rowGap:'100px'}}>
             {
                 cocktail.map(function(cocktail, i) {
                     return (
-                        <Link to="/cocktail/1">
-                            <div className="cocktail-box" key={i}>
+                        <Link to={`/cocktail/${cocktail.no}`} key={i}>
+                            <div className="cocktail-box">
                                 <img src={cocktail.cocktailImage[0].url} width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail"></img>
                                 <div className='cocktail-contents' style={{fontWeight:'800', padding:'10px 0px'}}>{cocktail.name}</div>
                                 <div className='cocktail-contents' style={{color:'rgb(131, 131, 131)', fontSize:'12px'}}>{cocktail.cocktailContents}</div>

@@ -6,7 +6,7 @@ import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-
 function Header() {
     return (
       <div className="App">
-        <div className='header' style={{paddingLeft:'10%', paddingRight:'10%', marginBottom:'50px'}}>
+        <div className='header' style={{paddingLeft:'15%', paddingRight:'15%', marginBottom:'50px'}}>
           <div style={{display:'grid', gridTemplateColumns:'1fr 1fr'}}>
             <Link to="/">
               <h1 style={{cursor:'pointer', fontSize:'40px'}}>로고</h1>
@@ -17,20 +17,20 @@ function Header() {
           </div>
   
           <div>
-            <div style={{width:'30%', display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr 1fr'}}>
+            <div style={{width:'35%', display:'grid', gridTemplateColumns:'90px 70px 85px 1fr 1fr'}}>
               <Link to="/cocktail">
                 <div style={{display:'inline-block'}}>
                   <li className='header-menu'>칵테일</li>
                   <div className='header-animationbar'></div>
                 </div>
               </Link>
-              <Link to="/">
-                <div style={{display:'inline-block', position:'relative', left:'15px'}}>
+              <Link to="/" style={{maxWidth:'60px'}}>
+                <div style={{display:'inline-block'}}>
                   <li className='header-menu'>재료</li>
                   <div className="header-animationbar"></div>
                 </div>
               </Link>
-              <Link to="/">
+              <Link to="/" style={{maxWidth:'60px'}}>
                 <div style={{display:'inline-block'}}>
                   <li className='header-menu'>게시판</li>
                   <div className="header-animationbar"></div>
@@ -43,7 +43,7 @@ function Header() {
                 </div>
               </Link>
               <Link to="/">
-                <div style={{display:'inline-block', position:'relative', left:'20px'}}>
+                <div style={{display:'inline-block'}}>
                   <li className='header-menu'>클래스</li>
                   <div className="header-animationbar"></div>
                 </div>
