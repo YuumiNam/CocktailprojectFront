@@ -8,10 +8,12 @@ function CocktailDetail(props) {
     const cocktail = props.cocktail;
     const {no} = useParams();
 
-    const eachCocktail = cocktail.filter((cocktail) => cocktail.no == 1);
+    const eachCocktail = cocktail.filter((cocktail) => cocktail.no == no);
     console.log(eachCocktail);
 
-
+    // console.log(eachCocktail[0].cocktailImage[0]);
+    // let name = eachCocktail.name;
+    // console.log(name);
     
     return (
         <>
@@ -23,7 +25,7 @@ function CocktailDetail(props) {
                             <div style={{width:'510px', height:'400px', display:'grid', gridTemplateColumns:'80px 420px', columnGap:'10px'}}>
                                 <div style={{width:'80px', height:'100%'}}>
                                     <div style={{width:'80px', height:'80px', marginBottom:'10px',backgroundColor:'white', borderRadius:'10px'}}></div>
-                                    <div style={{width:'80px', height:'80px', marginBottom:'5px',backgroundColor:'white', borderRadius:'10px'}}></div>
+                                    <div style={{width:'80px', height:'80px', marginBottom:'10px',backgroundColor:'white', borderRadius:'10px'}}></div>
                                 </div>
                                 <div style={{width:'420px', height:'100%'}}>
                                     <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/72.Virgin%20Colada.jpg" width='420px' height='400px' style={{borderRadius:'10px'}}></img>
