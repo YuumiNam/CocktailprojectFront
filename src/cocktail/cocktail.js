@@ -5,19 +5,21 @@ import './cocktail.css';
 import axios from 'axios';
 import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
 
-function Cocktail() {
-    let [cocktail, setCocktail] = useState([]);
+function Cocktail(props) {
+    // let [cocktail, setCocktail] = useState([]);
 
-    useEffect(() => {
-        axios.get('http://localhost:3001/cocktail')
-        .then((res) => {
+    // useEffect(() => {
+    //     axios.get('http://localhost:3001/cocktail')
+    //     .then((res) => {
 
-        let copy = [...res.data];
+    //     let copy = [...res.data];
         
-        setCocktail(copy);
-        // setCocktail((prev)=>[cocktail, ...prev]);
-        });
-    },[]);
+    //     setCocktail(copy);
+    //     // setCocktail((prev)=>[cocktail, ...prev]);
+    //     });
+    // },[]);
+
+    const cocktail = props.cocktail;
 
     return (
     <div>
