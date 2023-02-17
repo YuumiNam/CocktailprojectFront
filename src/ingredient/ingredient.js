@@ -7,7 +7,7 @@ import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-
 
 function Ingredient(props) {
     const ingredient = props.ingredient;
-    console.log(ingredient);
+    // console.log(ingredient);
 
     return (
     <div>
@@ -26,8 +26,8 @@ function Ingredient(props) {
                 console.log(a);
                 return (
                     <Link to={`/ingredient/${a.no}`} key={i}>
-                        <div className="cocktail-box">
-                            <img src={a.image} width='200px' height='200px' style={{borderRadius:'10px'}} alt="ingredient"></img>
+                        <div className="cocktail-box" style={{backgroundColor:'rgb(248, 248, 248)', borderRadius:'10px'}}>
+                            <img src={a.image} width='200px' height='200px' style={{marginLeft:'35px'}} alt="ingredient"></img>
                             <div className='cocktail-contents' style={{fontWeight:'800', padding:'10px 0px'}}>{a.name}</div>
                             <div className='cocktail-contents' style={{color:'rgb(131, 131, 131)', fontSize:'12px'}}>{a.contents}</div>
                         </div>

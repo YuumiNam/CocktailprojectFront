@@ -31,7 +31,7 @@ function IngredientDetail(props) {
                                 <div className="cocktail-banner-box-contents-name">{a.name}</div>
                                 <div className="cocktail-banner-box-contents-engname">{a.engName}</div>
                             </div>
-                            <div style={{color:'white'}}>{a.cocktailContents}</div>
+                            <div style={{color:'white'}}>{a.contents}</div>
                             <div className="cocktail-banner-box-contents-isalcohol">도수 : {(a.type == "alcohol") ? "알콜" : "논알콜"}</div>
                             <div className="cocktail-ingredient-image" style={{marginLeft:'0%', marginTop:'5%'}}>
                                 <div className="cocktail-banner-box-contents-favorite">❤</div>
