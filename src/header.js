@@ -24,7 +24,7 @@ function Header() {
                   <div className='header-animationbar'></div>
                 </div>
               </Link>
-              <Link to="/" style={{maxWidth:'60px'}}>
+              <Link to="/ingredient" style={{maxWidth:'60px'}}>
                 <div style={{display:'inline-block'}}>
                   <li className='header-menu'>재료</li>
                   <div className="header-animationbar"></div>
