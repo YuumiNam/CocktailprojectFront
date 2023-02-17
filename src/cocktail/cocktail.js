@@ -1,23 +1,13 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
 import '../App.css';
-import './cocktail.css';
+import '../css/cocktailandingredient.css';
 import axios from 'axios';
 import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
 
 function Cocktail(props) {
-    // let [cocktail, setCocktail] = useState([]);
 
-    // useEffect(() => {
-    //     axios.get('http://localhost:3001/cocktail')
-    //     .then((res) => {
-
-    //     let copy = [...res.data];
-        
-    //     setCocktail(copy);
-    //     // setCocktail((prev)=>[cocktail, ...prev]);
-    //     });
-    // },[]);
+    // {cocktail.cocktailImages[0].url}
 
     const cocktail = props.cocktail;
 
@@ -32,17 +22,18 @@ function Cocktail(props) {
 
         <div className="cocktail-list">
             {
-                cocktail.map(function(cocktail, i) {
-                    return (
-                        <Link to={`/cocktail/${cocktail.no}`} key={i}>
-                            <div className="cocktail-box">
-                                <img src={cocktail.cocktailImage[0].url} width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail"></img>
-                                <div className='cocktail-contents' style={{fontWeight:'800', padding:'10px 0px'}}>{cocktail.name}</div>
-                                <div className='cocktail-contents' style={{color:'rgb(131, 131, 131)', fontSize:'12px'}}>{cocktail.cocktailContents}</div>
-                            </div>
-                        </Link>
-                    )
-                })
+            cocktail.map(function(cocktail, i) {
+                return (
+                    <Link to={`/cocktail/${cocktail.no}`} key={i}>
+                        <div className="cocktail-box">
+                            {/* {cocktail.cocktailImage[0].url} */}
+                            <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail"></img>
+                            <div className='cocktail-contents' style={{fontWeight:'800', padding:'10px 0px'}}>{cocktail.name}</div>
+                            <div className='cocktail-contents' style={{color:'rgb(131, 131, 131)', fontSize:'12px'}}>{cocktail.cocktailContents}</div>
+                        </div>
+                    </Link>
+                )
+            })
             }
         </div>
     </div>

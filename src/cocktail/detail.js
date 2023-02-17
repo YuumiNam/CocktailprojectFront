@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
-import '../App.css'
+import '../App.css';
+import '../css/cocktailandingredient.css';
 import axios from 'axios';
 import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
 
@@ -11,43 +12,48 @@ function CocktailDetail(props) {
     const eachCocktail = cocktail.filter((cocktail) => cocktail.no == no);
     console.log(eachCocktail);
 
-    // console.log(eachCocktail[0].cocktailImage[0]);
-    // let name = eachCocktail.name;
-    // console.log(name);
-    
     return (
         <>
         {
-            eachCocktail.map(function(a, i) {
-                return (
-                    <div className='banner' style={{backgroundColor:'#303030', border:'1px solid white'}} key={a.no}>
-                        <div style={{width:'950px', height:'400px', margin:'auto', position:'relative', top:'12%', display:'grid', gridTemplateColumns:'500px 400px', columnGap:'50px'}}>
-                            <div style={{width:'510px', height:'400px', display:'grid', gridTemplateColumns:'80px 420px', columnGap:'10px'}}>
-                                <div style={{width:'80px', height:'100%'}}>
-                                    <div style={{width:'80px', height:'80px', marginBottom:'10px',backgroundColor:'white', borderRadius:'10px'}}></div>
-                                    <div style={{width:'80px', height:'80px', marginBottom:'10px',backgroundColor:'white', borderRadius:'10px'}}></div>
-                                </div>
-                                <div style={{width:'420px', height:'100%'}}>
-                                    <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/72.Virgin%20Colada.jpg" width='420px' height='400px' style={{borderRadius:'10px'}}></img>
-                                </div>
+        eachCocktail.map(function(a, i) {
+            return (
+                <div className='banner cocktail-banner' key={a.no}>
+                    <div className="cocktail-banner-box">
+                        <div className="cocktail-banner-box-piturebox">
+                            <div style={{width:'80px', height:'100%'}}>
+                                {
+                                a.cocktailImages.map(function(a, i) {
+                                    return (
+                                        <div className="cocktail-banner-box-minipiturebox" key={a.no}>
+                                            {/* {a.url} */}
+                                            <img className="cocktail-banner-box-minipiture" src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='420px' height='400px'></img>
+                                        </div>
+                                    )
+                                })
+                                }
                             </div>
-                            <div style={{width:'400px', height:'100%', display:'grid', gridTemplateRows:'1fr 1fr 1fr 1fr 2fr'}}>
-                                <div style={{color:'rgb(242, 92, 92)', fontWeight:'800'}}>#{(a.type == "alcohol") ? "알콜" : "논알콜"} #재료6개</div>
-                                <div>
-                                    <div style={{float:'left', fontSize:'30px', fontWeight:'800', color:'white', marginRight:'10px'}}>{a.name}</div>
-                                    <div style={{color:'rgb(110, 110, 110)', fontWeight:'600', position:'relative', top:'5px'}}>{a.engName}</div>
-                                </div>
-                                <div style={{color:'white'}}>{a.cocktailContents}</div>
-                                <div style={{maxWidth:'120px', maxHeight:'30px', textAlign:'center', border:'1px solid rgb(110, 110, 110)', color:'rgb(110, 110, 110)', borderRadius:'10px', paddingTop:'8px', marginTop:'15px'}}>도수 : {(a.type == "alcohol") ? "알콜" : "논알콜"}</div>
-                                <div className="cocktail-ingredient-image" style={{marginLeft:'0%', marginTop:'5%'}}>
-                                    <div style={{textAlign:'center', fontSize:'40px', color:'rgb(242, 92, 92)', marginTop:'7px', marginBottom:'-8px'}}>❤</div>
-                                    <div style={{textAlign:'center', fontSize:'25px', color:'rgb(242, 92, 92)'}}>5</div>
-                                </div>
+                            <div style={{width:'420px', height:'100%'}}>
+                                {/* {a.cocktailImages[0].url} */}
+                                <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='420px' height='400px' style={{borderRadius:'10px'}}></img> 
+                            </div>
+                        </div>
+                        <div className="cocktail-banner-box-contentsbox">
+                            <div style={{color:'rgb(242, 92, 92)', fontWeight:'800'}}>#{(a.type == "alcohol") ? "알콜" : "논알콜"} #재료6개</div>
+                            <div>
+                                <div className="cocktail-banner-box-contents-name">{a.name}</div>
+                                <div className="cocktail-banner-box-contents-engname">{a.engName}</div>
+                            </div>
+                            <div style={{color:'white'}}>{a.cocktailContents}</div>
+                            <div className="cocktail-banner-box-contents-isalcohol">도수 : {(a.type == "alcohol") ? "알콜" : "논알콜"}</div>
+                            <div className="cocktail-ingredient-image" style={{marginLeft:'0%', marginTop:'5%'}}>
+                                <div className="cocktail-banner-box-contents-favorite">❤</div>
+                                <div className="cocktail-banner-box-contents-favorite" style={{fontSize:'25px', marginTop:'0px'}}>5</div>
                             </div>
                         </div>
                     </div>
-                )
-            })
+                </div>
+            )
+        })
         }
 
         <div style={{paddingLeft:'15%', paddingRight:'15%', marginTop:'100px'}}>
