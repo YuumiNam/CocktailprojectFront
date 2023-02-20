@@ -100,6 +100,7 @@
     color: rgb(110, 100, 110);
     position: relative;
     top: 5px;
+    white-space: nowrap; /* 글자를 한줄로 모아준다 */
 }
 
 .cocktail-banner-box-contents-isalcohol {

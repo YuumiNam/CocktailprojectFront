@@ -4,7 +4,7 @@ import axios from "axios";
 // 칵테일 JSON파일
 async function getCocktail(setCocktail) {
     const cocktailData = await axios.get(
-        'cocktail/list'
+        '/cocktail/list'
     );
     setCocktail(cocktailData.data);
 }
