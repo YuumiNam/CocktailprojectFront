@@ -12,31 +12,22 @@ import Ingredient from "./ingredient/ingredient";
 import IngredientDetail from "./ingredient/IngredientDetail";
 import Class from "./class";
 import Signature from "./signature/signature";
+import SignatureDetail from "./signature/signatureDetail";
+import {getCocktail, getIngredient} from "./api";
 
 function App() {
 
   const [cocktail, setCocktail] = useState([]);
   const [ingredient, setIngredient] = useState([]);
 
-  // cocktail/list
-
+  // 칵테일 JSON파일
   useEffect(() => {
-      axios.get('cocktail/list') // cocktail/list
-      .then((res) => {
-
-      let copy = [...res.data];
-      
-      setCocktail(copy);
-      });
+    getCocktail(setCocktail);
   },[]);
 
+  // 재료 JSON파일
   useEffect(() => {
-    axios.get('http://localhost:3002/ingredient')
-    .then((res) => {
-      let copy = [...res.data];
-
-      setIngredient(copy);
-    });
+    getIngredient(setIngredient);
   },[])
 
   return (
@@ -49,6 +40,7 @@ function App() {
         <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
         <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
         <Route path="signature" element={<Signature />}></Route>
+        <Route path="signature/:no" element={<SignatureDetail />}></Route>
         <Route path="/class" element={<Class cocktail={cocktail} />}></Route>
       </Routes>
     </div>
