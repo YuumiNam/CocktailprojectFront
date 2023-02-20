@@ -7,10 +7,11 @@ import axios from 'axios';
 import Header from './header';
 import Main from './main/main';
 import Cocktail from './cocktail/cocktail';
-import CocktailDetail from './cocktail/detail';
+import CocktailDetail from './cocktail/cocktailDetail';
 import Ingredient from "./ingredient/ingredient";
 import IngredientDetail from "./ingredient/IngredientDetail";
 import Class from "./class";
+import Signature from "./signature/signature";
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
         <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} />}></Route>
         <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
         <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
+        <Route path="signature" element={<Signature />}></Route>
         <Route path="/class" element={<Class cocktail={cocktail} />}></Route>
       </Routes>
     </div>

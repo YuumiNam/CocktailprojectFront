@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from "react";
+import '../App.css';
 
 function Main() {
     return(

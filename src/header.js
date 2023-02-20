@@ -36,7 +36,7 @@ function Header() {
                   <div className="header-animationbar"></div>
                 </div>
               </Link>
-              <Link to="/">
+              <Link to="/signature">
                 <div style={{display:'inline-block'}}>
                   <li className='header-menu'>시그니처</li>
                   <div className="header-animationbar"></div>
