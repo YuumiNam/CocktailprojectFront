@@ -1,0 +1,42 @@
+/* ---------------- signature-banner ------------------ */
+.banner-contents-container {
+    width: 500px;
+    height: 400px;
+    text-align: center;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin: auto;
+    position: relative;
+    top: 12%;
+}
+
+.banner-contents-btn {
+    padding: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+    background-color: rgba(230, 230, 3, 0.897);
+    border: 1px solid rgba(230, 230, 3, 0.897);
+    border-radius: 10px;
+    font-weight: 600;
+    color: rgb(110, 100, 110);
+    z-index: 1;
+    cursor: pointer;
+}
+
+/* ---------------- signature-list ------------------ */
+.signature-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 100px;
+    column-gap: 30px;
+}
+
+.signature-contents {
+    width: 280px;
+    height: 20px;
+    background-color: white;
+    margin: 0px;
+    overflow: hidden;
+    white-space: nowrap; /* 글자를 한줄로 모아준다 */
+    text-overflow: ellipsis;
+}
