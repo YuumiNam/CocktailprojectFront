@@ -10,7 +10,7 @@ function CocktailDetail(props) {
     const {no} = useParams();
 
     const eachCocktail = cocktail.filter((cocktail) => cocktail.no == no);
-    console.log(eachCocktail);
+    // console.log(eachCocktail);
 
     return (
         <>

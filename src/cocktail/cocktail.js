@@ -7,8 +7,6 @@ import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-
 
 function Cocktail(props) {
 
-    // {cocktail.cocktailImages[0].url}
-
     const cocktail = props.cocktail;
 
     return (

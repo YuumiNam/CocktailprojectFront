@@ -23,7 +23,7 @@ function Ingredient(props) {
         <div className="cocktail-list">
             {
             ingredient.map(function(a, i) {
-                console.log(a);
+                // console.log(a);
                 return (
                     <Link to={`/ingredient/${a.no}`} key={i}>
                         <div className="cocktail-box" style={{backgroundColor:'rgb(248, 248, 248)', borderRadius:'10px'}}>

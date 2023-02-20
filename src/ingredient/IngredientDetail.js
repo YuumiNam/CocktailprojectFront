@@ -8,7 +8,7 @@ import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-
 function IngredientDetail(props) {
     const ingredient = props.ingredient;
     const {no} = useParams();
-    console.log(ingredient);
+    // console.log(ingredient);
 
     const eachIngredient =  ingredient.filter((ingredient) => ingredient.no == no);
     
