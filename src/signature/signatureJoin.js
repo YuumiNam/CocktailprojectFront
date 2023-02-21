@@ -33,17 +33,17 @@ function SignatureJoin() {
                     </div>
                     <div>
                         <h3>칵테일 이름 ▼</h3>
-                        <input type="text" placeholder="이름을 지어주세요:)" className="signature-contents"></input>
+                        <input type="text" placeholder="이름을 지어주세요:)" className="signature-join-contents-2"></input>
                         <p style={{textAlign:'right', marginTop:'5px'}}>0/50</p>
                     </div>
                     <div>
                         <h3>칵테일 영문이름 ▼</h3>
-                        <input type="text" placeholder="영문이름을 지어주세요:)" className="signature-contents"></input>
+                        <input type="text" placeholder="영문이름을 지어주세요:)" className="signature-join-contents-2"></input>
                         <p style={{textAlign:'right', marginTop:'5px'}}>0/50</p>
                     </div>
                     <div>
                         <h3>칵테일 설명 ▼</h3>
-                        <textarea placeholder="칵테일 설명을 적어주세요:)" spellCheck="false" className="signature-contents signature-textarea"></textarea>
+                        <textarea placeholder="칵테일 설명을 적어주세요:)" spellCheck="false" className="signature-join-contents-2 signature-textarea"></textarea>
                         <p style={{textAlign:'right', marginTop:'5px'}}>0/200</p>
                     </div>
                     <div>
@@ -58,7 +58,7 @@ function SignatureJoin() {
                     </div>
                     <div>
                         <h3>레시피 정보 ▼</h3>
-                        <textarea placeholder="레시피에 대한 설명을 적어주세요:)" spellCheck="false" className="signature-contents signature-textarea"></textarea>
+                        <textarea placeholder="레시피에 대한 설명을 적어주세요:)" spellCheck="false" className="signature-join-contents-2 signature-textarea"></textarea>
                         <p style={{textAlign:'right', marginTop:'5px'}}>0/200</p>
                     </div>
                     <div>

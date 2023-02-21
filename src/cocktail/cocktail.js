@@ -25,8 +25,8 @@ function Cocktail(props) {
                 return (
                     <Link to={`/cocktail/${cocktail.no}`} key={i}>
                         <div className="cocktail-box">
-                            {/* {cocktail.cocktailImage[0].url} */}
-                            <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail"></img>
+                            {/* {cocktail.cocktailImages[0].url} */} {/* "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" */}
+                            <img src={cocktail.cocktailImages[0].url} width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail"></img>
                             <div className='cocktail-contents' style={{fontWeight:'800', padding:'10px 0px'}}>{cocktail.name}</div>
                             <div className='cocktail-contents' style={{color:'rgb(131, 131, 131)', fontSize:'12px'}}>{cocktail.cocktailContents}</div>
                         </div>

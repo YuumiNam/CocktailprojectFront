@@ -26,15 +26,15 @@ function CocktailDetail(props) {
                                     return (
                                         <div className="cocktail-banner-box-minipiturebox" key={a.no}>
                                             {/* {a.url} */}
-                                            <img className="cocktail-banner-box-minipiture" src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='420px' height='400px'></img>
+                                            <img className="cocktail-banner-box-minipiture" src={a.url} width='420px' height='400px'></img>
                                         </div>
                                     )
                                 })
                                 }
                             </div>
-                            <div style={{width:'420px', height:'100%'}}>
+                            <div style={{width:'420px', height:'100%'}} key={i}>
                                 {/* {a.cocktailImages[0].url} */}
-                                <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='420px' height='400px' style={{borderRadius:'10px'}}></img> 
+                                <img src={a.cocktailImages[0].url} width='420px' height='400px' style={{borderRadius:'10px'}}></img> 
                             </div>
                         </div>
                         <div className="cocktail-banner-box-contentsbox">

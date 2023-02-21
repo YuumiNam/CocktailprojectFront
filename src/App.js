@@ -12,11 +12,10 @@ import Ingredient from "./ingredient/ingredient";
 import IngredientDetail from "./ingredient/IngredientDetail";
 import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
-import {getCocktail, getIngredient} from "./api";
+import {getCocktail, getIngredient, ScrolToTop} from "./api";
 import SignatureJoin from "./signature/signatureJoin";
 
 function App() {
-
   const [cocktail, setCocktail] = useState([]);
   const [ingredient, setIngredient] = useState([]);
 
