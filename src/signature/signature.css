@@ -40,3 +40,30 @@
     white-space: nowrap; /* 글자를 한줄로 모아준다 */
     text-overflow: ellipsis;
 }
+
+/* ---------------- signature-join ------------------ */
+.signature-join-container {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.signature-join-banner {
+    width: 92.55%;
+    height: 280px;
+    margin-top: 50px;
+    padding: 50px;
+    box-shadow: rgb(0 0 0 / 20%) 3px 8px 20px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 300px 50px 330px;
+    grid-template-rows: 70px 60px 1fr;
+}
+
+.signature-join-banner-img {
+    width: 170px;
+    height: 170px;
+    padding: 50px;
+    border: 1px solid black;
+    border-radius: 150px;
+    margin: auto;
+}
