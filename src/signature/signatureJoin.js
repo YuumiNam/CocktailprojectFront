@@ -22,25 +22,30 @@ function SignatureJoin() {
                     </div>
                     <div>
                         <h3>칵테일 이름 ▼</h3>
-                        <input type="text" placeholder="이름을 지어주세요:)" style={{width:'98.2%', padding:'10px', border:'1px solid', borderRadius:'10px', fontSize:'15px'}}></input>
+                        <input type="text" placeholder="이름을 지어주세요:)" className="signature-contents"></input>
                     </div>
                     <div>
                         <h3>칵테일 영문이름 ▼</h3>
-                        <input type="text" placeholder="영문이름을 지어주세요:)" style={{width:'98.2%', padding:'10px', border:'1px solid', borderRadius:'10px', fontSize:'15px'}}></input>
+                        <input type="text" placeholder="영문이름을 지어주세요:)" className="signature-contents"></input>
                     </div>
                     <div>
                         <h3>칵테일 설명 ▼</h3>
-                        <textarea placeholder="칵테일 설명을 적어주세요:)" style={{width:'98.2%', padding:'10px', resize:'none', border:'1px solid', borderRadius:'10px'}}></textarea>
+                        <textarea placeholder="칵테일 설명을 적어주세요:)" spellCheck="false" className="signature-contents signature-textarea"></textarea>
                     </div>
                     <div>
                         <h3>재료 정보 ▼</h3>
+                        <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gridTemplateRows:'1fr 1fr 1fr', height:'200px'}}>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
                     </div>
                     <div>
                         <h3>레시피 정보 ▼</h3>
-                        <textarea placeholder="레시피에 대한 설명을 적어주세요:)"></textarea>
+                        <textarea placeholder="레시피에 대한 설명을 적어주세요:)" spellCheck="false" className="signature-contents signature-textarea"></textarea>
                     </div>
                     <div>
-                        <button>업로드</button>
+                        <button className="signature-contents-btn">업로드</button>
                     </div>
                 </form>
             </div>
