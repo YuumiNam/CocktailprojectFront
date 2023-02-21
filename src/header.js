@@ -42,7 +42,7 @@ function Header() {
                   <div className="header-animationbar"></div>
                 </div>
               </Link>
-              <Link to="/class">
+              <Link to="/">
                 <div style={{display:'inline-block'}}>
                   <li className='header-menu'>클래스</li>
                   <div className="header-animationbar"></div>
