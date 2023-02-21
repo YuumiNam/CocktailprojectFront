@@ -55,7 +55,7 @@
     box-shadow: rgb(0 0 0 / 20%) 3px 8px 20px;
     border-radius: 10px;
     display: grid;
-    grid-template-columns: 300px 120px 330px;
+    grid-template-columns: 300px 100px 330px;
     grid-template-rows: 70px 60px 1fr;
 }
 
@@ -70,16 +70,28 @@
 
 .signature-join-contents {
     width: 96.25%;
-    margin-top: 50px;
+    margin: 50px 0;
     padding: 70px 25px;
     box-shadow: rgb(0 0 0 / 20%) 3px 8px 20px;
     border-radius: 10px;
 }
 
-.signature-contents-picture-box div div {
+.signature-picture-box {
     border: 1px solid black;
     border-radius: 10px;
     height: 200px;
+}
+
+.signature-picture-box-grid-1 {
+    display: grid;
+    grid-template-columns: 250px 1fr 1fr 1fr;
+    column-gap: 10px;
+}
+
+.signature-picture-box-grid-2 {
+    display: grid;
+    grid-template-rows: 1.5fr 1fr 1fr 1.5fr;
+    background-color: #eee;
 }
 
 .signature-contents {
@@ -94,6 +106,36 @@
     resize: none;
     height: 150px;
     white-space: pre-line;
+}
+
+.signature-ingredient-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 60px 60px;
+    column-gap: 20px;
+    height: 200px;
+    padding: 20px;
+    background-color: #eee;
+    border-radius: 10px;
+}
+
+.signature-ingredient-contents-1 {
+    width: 96.5%;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.signature-ingredient-contents-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    float: right;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .signature-contents-btn {
