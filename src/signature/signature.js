@@ -12,7 +12,9 @@ function Signature() {
         <div className="banner-contents-container">
             <div style={{marginTop:'22%'}}>누구나 참여할 수 있는 창작레시피 게시판</div>
             <div style={{fontSize:'30px'}}>너만의 시그니처 칵테일을 만들어봐!!</div>
-            <div><button className="banner-contents-btn">참가신청 바로가기</button></div>
+            <Link to="/signature/join">
+                <div><button className="banner-contents-btn">참가신청 바로가기</button></div>
+            </Link>
         </div>
     </div>
     <div style={{paddingLeft:'15%', paddingRight:'15%', marginTop:'100px'}}>
