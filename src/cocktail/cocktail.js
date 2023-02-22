@@ -16,8 +16,9 @@ function Cocktail(props) {
     // 이거 없으면 초기화면 출력에 아무것도 mapping이 안됨
     useEffect(() => {
         setEachCocktail(cocktail);
-    }, []);
+    },[cocktail]);
 
+    console.log(eachCocktail);
     return (
     <div>
         <div className="cocktail-btn-box">
