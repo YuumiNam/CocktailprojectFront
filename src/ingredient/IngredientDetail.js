@@ -1,6 +1,8 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
 import '../App.css';
+import '../css/cocktailandingredient.css';
+import '../css/signature.css';
 import axios from 'axios';
 import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
 
@@ -50,26 +52,6 @@ function IngredientDetail(props) {
                                 <div className='signature-contents' style={{color:'rgb(131, 131, 131)', fontSize:'12px'}}>칵테일내용칵테일내용칵테일내용칵테일내용칵테일내용칵테일내용</div>
                             </div>
                         </Link>
-                        <div style={{cursor: "pointer"}}>
-                            <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail"></img>
-                            <div className='signature-contents' style={{fontWeight:'800', padding:'10px 0px'}}>칵테일</div>
-                            <div className='signature-contents' style={{color:'rgb(131, 131, 131)', fontSize:'12px'}}>칵테일내용칵테일내용칵테일내용칵테일내용칵테일내용칵테일내용</div>
-                        </div>
-                        <div style={{cursor: "pointer"}}>
-                            <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail"></img>
-                            <div className='signature-contents' style={{fontWeight:'800', padding:'10px 0px'}}>칵테일</div>
-                            <div className='signature-contents' style={{color:'rgb(131, 131, 131)', fontSize:'12px'}}>칵테일내용칵테일내용칵테일내용칵테일내용칵테일내용칵테일내용</div>
-                        </div>
-                        <div style={{cursor: "pointer"}}>
-                            <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail"></img>
-                            <div className='signature-contents' style={{fontWeight:'800', padding:'10px 0px'}}>칵테일</div>
-                            <div className='signature-contents' style={{color:'rgb(131, 131, 131)', fontSize:'12px'}}>칵테일내용칵테일내용칵테일내용칵테일내용칵테일내용칵테일내용</div>
-                        </div>
-                        <div style={{cursor: "pointer"}}>
-                            <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail"></img>
-                            <div className='signature-contents' style={{fontWeight:'800', padding:'10px 0px'}}>칵테일</div>
-                            <div className='signature-contents' style={{color:'rgb(131, 131, 131)', fontSize:'12px'}}>칵테일내용칵테일내용칵테일내용칵테일내용칵테일내용칵테일내용</div>
-                        </div>
                     </div>
                 </div>
                 </div>

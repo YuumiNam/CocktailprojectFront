@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
 import '../App.css';
-import './cocktailandingredient.css';
+import '../css/cocktailandingredient.css';
 import axios from 'axios';
 import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
 
@@ -45,7 +45,7 @@ function CocktailDetail(props) {
                             </div>
                             <div style={{color:'white'}}>{a.cocktailContents}</div>
                             <div className="cocktail-banner-box-contents-isalcohol">도수 : {(a.type == "alcohol") ? "알콜" : "논알콜"}</div>
-                            <div className="cocktail-ingredient-image" style={{marginLeft:'0%', marginTop:'5%'}}>
+                            <div className="cocktail-ingredient-image" style={{marginLeft:'0%', marginTop:'3%'}}>
                                 <div className="cocktail-banner-box-contents-favorite">❤</div>
                                 <div className="cocktail-banner-box-contents-favorite" style={{fontSize:'25px', marginTop:'0px'}}>5</div>
                             </div>

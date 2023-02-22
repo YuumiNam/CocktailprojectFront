@@ -84,7 +84,7 @@
     width: 400px;
     height: 100%;
     display: grid;
-    grid-template-rows: 1fr 1fr 130px 1fr 2fr;
+    grid-template-rows: 0.5fr 0.7fr 2fr 0.8fr 1.7fr;
 }
 
 .cocktail-banner-box-contents-name {
