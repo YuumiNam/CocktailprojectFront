@@ -17,7 +17,7 @@ function ScrollToTop() {
 // 칵테일 JSON파일
 async function getCocktail(setCocktail) {
     const cocktailData = await axios.get(
-        '/cocktail/list'
+        '/cocktail'
     );
     setCocktail(cocktailData.data);
 }
@@ -25,7 +25,7 @@ async function getCocktail(setCocktail) {
 // 재료 JSON파일
 async function getIngredient(setIngredient) {
     const ingredientData = await axios.get(
-        'http://localhost:3002/ingredient'
+        '/ingredient'
     );
     setIngredient(ingredientData.data);
 }
