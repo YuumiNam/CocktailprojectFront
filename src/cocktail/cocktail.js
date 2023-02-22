@@ -7,21 +7,29 @@ import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-
 import {getCocktail, getIngredient} from "../api";
 
 function Cocktail(props) {
-
+    // 전체 칵테일데이터
     const cocktail = props.cocktail;
+
+    // 필터링 할 칵테일데이터(copy)
+    const [eachCocktail, setEachCocktail] = useState([]);
+
+    // 이거 없으면 초기화면 출력에 아무것도 mapping이 안됨
+    useEffect(() => {
+        setEachCocktail(cocktail);
+    }, []);
 
     return (
     <div>
         <div className="cocktail-btn-box">
-            <button className='cocktail-btn'>도수</button>
+            <button className='cocktail-btn' onClick={() => setEachCocktail(cocktail.filter(data => data.type === 'alcohol'))}>알콜</button>
+            <button className='cocktail-btn' onClick={() => setEachCocktail(cocktail.filter(data => data.type === 'nonalcohol'))}>논알콜</button>
             <button className='cocktail-btn'>재료수</button>
-            <button className='cocktail-btn'>베이스주</button>
-            <button className='cocktail-btn'>정렬</button>
+            <button className='cocktail-btn'>최신순</button>
         </div>
 
         <div className="cocktail-list">
             {
-            cocktail.map(function(cocktail, i) {
+            eachCocktail.map(function(cocktail, i) {
                 return (
                     <Link to={`/cocktail/${cocktail.no}`} key={i}>
                         <div className="cocktail-box">

@@ -12,6 +12,7 @@ function IngredientDetail(props) {
     // console.log(ingredient);
 
     const eachIngredient =  ingredient.filter((ingredient) => ingredient.no == no);
+    console.log(eachIngredient);
     
     return (
         <>
