@@ -89,7 +89,7 @@ function CocktailDetail(props) {
                     </div>
                     <div className="cocktail-ingredient-recipe-box">
                         <div style={{paddingLeft:'20%'}}>
-                            <p className="cocktail-recipe-contents" style={{whiteSpace:'pre-line', }}>{parse(a.recipeContents)}</p>
+                            <p className="cocktail-recipe-contents" style={{whiteSpace:'pre-line'}}>{parse(a.recipeContents)}</p>
                         </div>
                     </div>
                 </div>
