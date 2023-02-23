@@ -4,13 +4,14 @@ import '../App.css';
 import '../css/cocktailandingredient.css';
 import axios from 'axios';
 import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
+import parse from 'html-react-parser';
 
 function CocktailDetail(props) {
     const cocktail = props.cocktail;
     const {no} = useParams();
 
     const eachCocktail = cocktail.filter((cocktail) => cocktail.no == no);
-    console.log(eachCocktail);
+    // console.log(eachCocktail);
 
     return (
         <>
@@ -88,10 +89,7 @@ function CocktailDetail(props) {
                     </div>
                     <div className="cocktail-ingredient-recipe-box">
                         <div style={{paddingLeft:'20%'}}>
-                            <p className="cocktail-recipe-contents">1. 믹서기에 으깬 얼음을 넣는다.</p>
-                            <p className="cocktail-recipe-contents">2. 코코넛 밀크(또는 코코넛 크림이나 코코넛 시럽) 30ml와 파인애플 주스 120ml를 추가한다. </p>
-                            <p className="cocktail-recipe-contents">3. 부드러워질 때까지 갈아서 허리케인 잔에 붓는다.</p>
-                            <p className="cocktail-recipe-contents">4. 휘핑크림으로 토핑하고 웨지 파인애플과 마라스키노 체리로 장식한다.</p>
+                            <p className="cocktail-recipe-contents" style={{whiteSpace:'pre-line', }}>{parse(a.recipeContents)}</p>
                         </div>
                     </div>
                 </div>
