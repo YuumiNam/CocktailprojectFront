@@ -55,7 +55,6 @@ function CocktailDetail(props) {
                     </div>
                 </div>
 
-
                 <div style={{paddingLeft:'15%', paddingRight:'15%', marginTop:'100px'}}>
                     <div style={{marginBottom:'50px'}}>
                         <span style={{fontSize:'20px', fontWeight:'bold'}}>재료정보 ▼</span>
@@ -65,23 +64,24 @@ function CocktailDetail(props) {
                         {
                         a.cocktailRecipes.map(function(a, i) {
                             return (
-                                <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 400px', padding:'2% 20%'}}>
-                                    <div className="cocktail-ingredient-image">
-                                        {/* "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/007.%EC%BD%94%EC%BD%94%EB%84%9B%EB%B0%80%ED%81%AC80.png" */}
-                                        <img src={a.ingredient.image} width='100%' height='100%'></img>
+                                <Link to={`/ingredient/${a.ingredient.no}`}>
+                                    <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 400px', padding:'0% 20%', marginBottom:'40px'}}>
+                                        <div className="cocktail-ingredient-image">
+                                            {/* "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/007.%EC%BD%94%EC%BD%94%EB%84%9B%EB%B0%80%ED%81%AC80.png" {a.ingredient.image} */}
+                                            <img src={a.ingredient.image} width='100%' height='100%'></img>
+                                        </div>
+                                        <div className="cocktail-ingredient-contents" style={{paddingTop:'15%'}}>
+                                            <div style={{fontSize:'13px', color:'rgb(242, 92, 92)', fontWeight:'bold'}}>{a.ingredient.type}</div>
+                                            <div>{a.ingredient.name}</div>
+                                        </div>
+                                        <div className="cocktail-ingredient-contents" style={{paddingTop:'10%', fontSize:'25px', fontWeight:'bold'}}>{a.amount}{a.unit}</div>
                                     </div>
-                                    <div className="cocktail-ingredient-contents" style={{paddingTop:'15%'}}>
-                                        <div style={{fontSize:'13px', color:'rgb(242, 92, 92)', fontWeight:'bold'}}>{a.ingredient.type}</div>
-                                        <div>{a.ingredient.name}</div>
-                                    </div>
-                                    <div className="cocktail-ingredient-contents" style={{paddingTop:'10%', fontSize:'25px', fontWeight:'bold'}}>{a.amount}{a.unit}</div>
-                                </div>
+                                </Link>
                             )
                         })
                         }
                     </div>
                 </div>
-
 
                 <div style={{paddingLeft:'15%', paddingRight:'15%', marginTop:'100px'}}>
                     <div style={{marginBottom:'50px'}}>

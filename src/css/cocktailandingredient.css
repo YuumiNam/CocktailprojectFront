@@ -27,7 +27,8 @@
     padding-right: 15%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    row-gap: 100px; 
+    row-gap: 100px;
+    column-gap: 50px;
 }
 
 .cocktail-contents {
