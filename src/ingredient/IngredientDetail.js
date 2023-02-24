@@ -46,13 +46,19 @@ function IngredientDetail(props) {
                 <div style={{paddingLeft:'15%', paddingRight:'15%', marginTop:'100px'}}>
                     <div style={{marginBottom:'50px'}}><span style={{fontSize:'20px', fontWeight:'bold'}}>해당 재료로 만들 수 있는 칵테일 ▼</span></div>
                     <div className="signature-list">
-                        <Link to={`/signature/1`}>
-                            <div style={{cursor: "pointer"}}>
-                                <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail"></img>
-                                <div className='signature-contents' style={{fontWeight:'800', padding:'10px 0px'}}>칵테일</div>
-                                <div className='signature-contents' style={{color:'rgb(131, 131, 131)', fontSize:'12px'}}>칵테일내용칵테일내용칵테일내용칵테일내용칵테일내용칵테일내용</div>
-                            </div>
-                        </Link>
+                        {
+                        a.cocktailRecipes.map(function(a, i) {
+                            return (
+                                <Link to={`/cocktail/${a.cocktail.no}`}>
+                                    <div style={{cursor: "pointer"}}>
+                                        <img src={a.cocktail.cocktailImages[0].url} width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail"></img>
+                                        <div className='signature-contents' style={{fontWeight:'800', padding:'10px 0px'}}>{a.cocktail.name}</div>
+                                        <div className='signature-contents' style={{color:'rgb(131, 131, 131)', fontSize:'12px'}}>{a.cocktail.cocktailContents}</div>
+                                    </div>
+                                </Link>
+                            )
+                        })    
+                        }
                     </div>
                 </div>
                 </div>
