@@ -10,6 +10,7 @@ import Cocktail from './cocktail/cocktail';
 import CocktailDetail from './cocktail/cocktailDetail';
 import Ingredient from "./ingredient/ingredient";
 import IngredientDetail from "./ingredient/IngredientDetail";
+import Board from "./board/board";
 import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
 import {getCocktail, getIngredient, ScrolToTop} from "./api";
@@ -38,6 +39,7 @@ function App() {
         <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} />}></Route>
         <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
         <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
+        <Route path="/board" element={<Board />}></Route>
         <Route path="signature" element={<Signature />}></Route>
         <Route path="signature/:no" element={<SignatureDetail />}></Route>
         <Route path="signature/join" element={<SignatureJoin />}></Route>

@@ -30,7 +30,7 @@ function Header() {
                   <div className="header-animationbar"></div>
                 </div>
               </Link>
-              <Link to="/" style={{maxWidth:'60px'}}>
+              <Link to="/board" style={{maxWidth:'60px'}}>
                 <div style={{display:'inline-block'}}>
                   <li className='header-menu'>게시판</li>
                   <div className="header-animationbar"></div>
