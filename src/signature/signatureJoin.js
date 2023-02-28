@@ -2,13 +2,16 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-function SignatureJoin() {
+function SignatureJoin(props) {
+    // ingredient 데이터 불러오기
+    const ingredient = props.ingredient;
+
     // JSON데이터를 저장할 객체
     const [joinSignature,setJoinSignature] = useState({
-        cocktailName: '',  
+        cocktailName: '',
+        engName:'',  
         cocktailContents: '',
         recipeContents: '',
-        type: 'alcohol',
         files: [],
     });
 
@@ -16,7 +19,8 @@ function SignatureJoin() {
     const handleChange = (e) => {
         const {name, value} = e.target;
 
-        setJoinSignature({...joinSignature,
+        setJoinSignature({
+            ...joinSignature,
             [name]: value
         });
     };
@@ -46,7 +50,7 @@ function SignatureJoin() {
         formData.append('cocktailName', joinSignature.cocktailName);
         formData.append('cocktailContents', joinSignature.cocktailContents);
         formData.append('recipeContents', joinSignature.recipeContents);
-        formData.append('type', joinSignature.type);
+        formData.append('engName', joinSignature.engName);
         joinSignature.files.forEach((file) => {
         formData.append('files', file);
         });
@@ -105,8 +109,8 @@ function SignatureJoin() {
                     </label>
                     <label>
                         <h3>칵테일 영문이름 ▼</h3>
-                        <input type="text" placeholder="영문이름을 지어주세요:)" className="signature-join-contents-2" name='type' value={joinSignature.type} onChange={handleChange}></input>
-                        <p style={{textAlign:'right', marginTop:'5px'}}>{joinSignature.type.length}/50</p>
+                        <input type="text" placeholder="영문이름을 지어주세요:)" className="signature-join-contents-2" name='engName' value={joinSignature.engName} onChange={handleChange}></input>
+                        <p style={{textAlign:'right', marginTop:'5px'}}>{joinSignature.engName.length}/50</p>
                     </label>
                     <label>
                         <h3>칵테일 설명 ▼</h3>
@@ -117,7 +121,7 @@ function SignatureJoin() {
                         <h3>재료 정보 ▼</h3>
                         <div className="signature-ingredient-container">
                             <div><h3>재료1</h3></div>
-                            <div style={{gridColumn:'1/3'}}><input type="text" placeholder="재료 이름을 검색해주세요"  className="signature-ingredient-contents-1" style={{width:'98.3%'}}></input></div>
+                            <div style={{gridColumn:'1/3'}}><input type="text" placeholder="재료 이름을 검색해주세요" className="signature-ingredient-contents-1" style={{width:'98.3%'}}></input></div>
                             <div><input type="text" placeholder="용량" className="signature-ingredient-contents-1"></input></div>
                             <div><input type="text" placeholder="단위" className="signature-ingredient-contents-1"></input></div>
                         </div>

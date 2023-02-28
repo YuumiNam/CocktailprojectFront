@@ -151,6 +151,11 @@
     cursor: pointer;
 }
 
+.signature-contents-btn:hover {
+    background-color: rgb(216, 138, 21);
+    transition: all 0.5s;
+}
+
 .signature-contents-btn:after {
     content: '';
     display: block;
