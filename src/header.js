@@ -12,9 +12,16 @@ function Header() {
           </Link>
         </div>
           
-        <div>
-          <button className='login-btn'>로그인</button>
-          <Link to="/join">
+        <div style={{display:'grid', gridTemplateColumns:'1fr 200px 110px 130px' , columnGap:'10px'}}>
+          <div style={{gridColumn:'2/3', paddingTop:'20px'}}>
+            <h3 style={{textAlign:'center'}}>로그인중</h3>
+          </div>
+          
+          <Link to="/login" style={{gridColumn:'3/4'}}>
+            <button className='login-btn'>로그인</button>
+          </Link>
+          
+          <Link to="/join" style={{gridColumn:'4/5'}}>
             <button className='login-btn'>회원가입</button>
           </Link>
         </div>
