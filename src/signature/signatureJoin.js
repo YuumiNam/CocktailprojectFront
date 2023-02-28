@@ -5,22 +5,12 @@ import { useState } from 'react';
 function SignatureJoin() {
     // JSON데이터를 저장할 객체
     const [joinSignature,setJoinSignature] = useState({
-        cocktailName: '',
+        cocktailName: '',  
         cocktailContents: '',
         recipeContents: '',
         type: 'alcohol',
-        files: undefined,
+        files: [],
     });
-
-    // POST할 엔드포인트
-    const postData = async (data) => {
-        try {
-            const res = await axios.post('http://192.168.0.4:8080/signature/form', data, {headers: {'Content-Type': 'multipart/form-data'}});
-            console.log(res.data);
-        } catch(err) {
-            console.log(err);
-        }
-    }
 
     // input에 넣은 값을 항상 value로 업데이트 해주고 빈state객체에 저장해줌
     const handleChange = (e) => {
@@ -31,12 +21,50 @@ function SignatureJoin() {
         });
     };
 
-    const handleSubmit = (e) => {
+    // files는 객체이기때문에 따로빼준다음 빈state객체에 저장해줌
+    const handleFileChange = (e) => {
+        const newFiles = [...joinSignature.files];
+
+        for (let i = 0; i < e.target.files.length; i++) {
+            newFiles.push(e.target.files[i]);
+        }
+
+        setJoinSignature((prevState) => ({
+            ...prevState,
+            files: newFiles,
+        }));
+
+        // console.log(newFiles);
+    };
+
+    const handleSubmit = async (e) => {
         // form을 제출 했을때 새로고침되는 것을 방지
         e.preventDefault();
 
+        // FormData객체에 데이터 저장
+        const formData = new FormData();
+        formData.append('cocktailName', joinSignature.cocktailName);
+        formData.append('cocktailContents', joinSignature.cocktailContents);
+        formData.append('recipeContents', joinSignature.recipeContents);
+        formData.append('type', joinSignature.type);
+        joinSignature.files.forEach((file) => {
+        formData.append('files', file);
+        });
+
         // 엔드포인트에 JSON파일 전달
-        postData(joinSignature);
+        try {
+            const res = await axios.post('/signature/form', formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data'
+                }
+              }); // http://192.168.0.4:8080/signature/form
+            console.log(res.data);
+        } catch(err) {
+            console.log(err);
+        }
+
+        // 콘솔에 띄우기
+        console.log(joinSignature);
     };
 
     return (
@@ -54,7 +82,7 @@ function SignatureJoin() {
                         <h3>칵테일 사진 ▼</h3>
                         <div className="signature-picture-box signature-picture-box-grid-1" style={{border:'0px'}}>
                             <div className="signature-picture-box" style={{border:'3px solid'}}>
-                                <input type="file" name='name' multiple="multiple" defaultValue={joinSignature.files} onChange={handleChange} style={{textAlign:'center', marginTop:'80px'}}></input>  
+                                <input type="file" name='files' multiple onChange={handleFileChange} style={{textAlign:'center', marginTop:'80px'}}></input>  
                             </div>
                             <div className="signature-picture-box signature-picture-box-grid-2">
                                 <div style={{gridRow:'2/3', textAlign:'center', fontWeight:'600'}}>추천사진1</div>
