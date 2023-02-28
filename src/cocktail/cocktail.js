@@ -9,6 +9,7 @@ import {getCocktail, getIngredient} from "../api";
 function Cocktail(props) {
     // 전체 칵테일데이터
     const cocktail = props.cocktail;
+    console.log(cocktail);
 
     // 필터링 할 칵테일데이터(copy)
     const [eachCocktail, setEachCocktail] = useState([]);
@@ -18,7 +19,7 @@ function Cocktail(props) {
         setEachCocktail(cocktail);
     },[cocktail]);
 
-    console.log(eachCocktail);
+    // console.log(eachCocktail);
     return (
     <div>
         <div className="cocktail-btn-box">

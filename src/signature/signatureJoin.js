@@ -25,7 +25,7 @@ function SignatureJoin(props) {
         });
     };
 
-    // files는 객체이기때문에 따로빼준다음 빈state객체에 저장해줌
+    // files는 여러장을 넣을수 있기때문에 따로빼준다음 빈state객체에 저장해줌
     const handleFileChange = (e) => {
         const newFiles = [...joinSignature.files];
 

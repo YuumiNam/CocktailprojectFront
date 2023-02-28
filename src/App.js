@@ -41,7 +41,7 @@ function App() {
         <Route path="/" element={<Main />}></Route>
         <Route path="/join" element={<Join />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/cocktail" element={<Cocktail cocktail={cocktail} />}></Route>
+        <Route path="/cocktail" element={<Cocktail />}></Route>
         <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} />}></Route>
         <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
         <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
