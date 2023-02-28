@@ -15,6 +15,16 @@ img {
 
 /* ---------------- header ------------------ */
 
+.header-container {
+  padding-left: 15%;
+  padding-right: 15%;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 70px 45px 70px 90px 70px 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 30px;
+}
+
 .login-btn {
   margin: 20px;
   margin-right: 0px;
@@ -33,10 +43,14 @@ img {
 
 .header-menu {
   display: inline-block;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 500;
   cursor: pointer;
   padding: auto;
+}
+
+.header-menu-box {
+  display: inline-block;
 }
 
 .header-animationbar {
@@ -45,11 +59,11 @@ img {
   margin-top: 5px;
   border-radius: 100px;
   background-color: rgb(242, 92, 92);
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 
 .header-menu:hover ~ .header-animationbar {
-  width: 100%;
+  width: 95%;
 }
 
 .header-search {
@@ -58,8 +72,6 @@ img {
   width: 350px;
   height: 20px;
   float: right;
-  position: relative;
-  top: -40px;
 }
 
 /* --------------- main -------------------- */

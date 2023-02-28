@@ -6,6 +6,7 @@ import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-
 import axios from 'axios';
 import Header from './header';
 import Main from './main/main';
+import Join from "./user/join";
 import Cocktail from './cocktail/cocktail';
 import CocktailDetail from './cocktail/cocktailDetail';
 import Ingredient from "./ingredient/ingredient";
@@ -35,6 +36,7 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/" element={<Main />}></Route>
+        <Route path="/join" element={<Join />}></Route>
         <Route path="/cocktail" element={<Cocktail cocktail={cocktail} />}></Route>
         <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} />}></Route>
         <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>

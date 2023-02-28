@@ -5,52 +5,48 @@ import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-
 
 function Header() {
     return (
-      <div className="App">
-        <div className='header' style={{paddingLeft:'15%', paddingRight:'15%', marginBottom:'50px', marginTop:'40px'}}>
-          <div style={{display:'grid', gridTemplateColumns:'1fr 1fr'}}>
-            <Link to="/">
-              <h1 style={{cursor:'pointer', fontSize:'40px'}}>로고</h1>
-            </Link>
-            <div>
-              <button className='login-btn'>로그인</button>
-            </div>
-          </div>
-  
-          <div>
-            <div style={{width:'35%', display:'grid', gridTemplateColumns:'90px 70px 85px 1fr 1fr'}}>
-              <Link to="/cocktail">
-                <div style={{display:'inline-block'}}>
-                  <li className='header-menu'>칵테일</li>
-                  <div className='header-animationbar'></div>
-                </div>
-              </Link>
-              <Link to="/ingredient" style={{maxWidth:'60px'}}>
-                <div style={{display:'inline-block'}}>
-                  <li className='header-menu'>재료</li>
-                  <div className="header-animationbar"></div>
-                </div>
-              </Link>
-              <Link to="/board" style={{maxWidth:'60px'}}>
-                <div style={{display:'inline-block'}}>
-                  <li className='header-menu'>게시판</li>
-                  <div className="header-animationbar"></div>
-                </div>
-              </Link>
-              <Link to="/signature">
-                <div style={{display:'inline-block'}}>
-                  <li className='header-menu'>시그니처</li>
-                  <div className="header-animationbar"></div>
-                </div>
-              </Link>
-              <Link to="/">
-                <div style={{display:'inline-block'}}>
-                  <li className='header-menu'>클래스</li>
-                  <div className="header-animationbar"></div>
-                </div>
-              </Link>
-            </div>
-            <input className='header-search' placeholder='만들고 싶은 칵테일 또는 재료를 검색하세요 :)'></input>
-          </div>
+      <div className='header-container'>
+        <div style={{gridColumn:'1/6'}}>
+          <Link to="/">
+            <h1 style={{cursor:'pointer', fontSize:'40px'}}>로고</h1>
+          </Link>
+        </div>
+          
+        <div>
+          <button className='login-btn'>로그인</button>
+          <Link to="/join">
+            <button className='login-btn'>회원가입</button>
+          </Link>
+        </div>
+
+        <Link to="/cocktail" className="header-menu-box">
+            <li className='header-menu'>칵테일</li>
+            <div className='header-animationbar'></div>
+        </Link>
+
+        <Link to="/ingredient" className="header-menu-box">
+            <li className='header-menu'>재료</li>
+            <div className="header-animationbar"></div>
+        </Link>
+
+        <Link to="/board" className="header-menu-box">
+            <li className='header-menu'>게시판</li>
+            <div className="header-animationbar"></div>
+        </Link>
+
+        <Link to="/signature" className="header-menu-box">
+            <li className='header-menu'>시그니처</li>
+            <div className="header-animationbar"></div>
+        </Link>
+
+        <Link to="/" className="header-menu-box">
+            <li className='header-menu'>클래스</li>
+            <div className="header-animationbar"></div>
+        </Link>
+        
+
+        <div style={{gridColumn:'6/7'}}>
+          <input className='header-search' placeholder='만들고 싶은 칵테일 또는 재료를 검색하세요 :)'></input>
         </div>
       </div>
     )

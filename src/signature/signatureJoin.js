@@ -98,22 +98,22 @@ function SignatureJoin() {
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <label>
                         <h3>칵테일 이름 ▼</h3>
                         <input type="text" placeholder="이름을 지어주세요:)" className="signature-join-contents-2" name='cocktailName' value={joinSignature.cocktailName} onChange={handleChange}></input>
                         <p style={{textAlign:'right', marginTop:'5px'}}>{joinSignature.cocktailName.length}/50</p>
-                    </div>
-                    <div>
+                    </label>
+                    <label>
                         <h3>칵테일 영문이름 ▼</h3>
                         <input type="text" placeholder="영문이름을 지어주세요:)" className="signature-join-contents-2" name='type' value={joinSignature.type} onChange={handleChange}></input>
                         <p style={{textAlign:'right', marginTop:'5px'}}>{joinSignature.type.length}/50</p>
-                    </div>
-                    <div>
+                    </label>
+                    <label>
                         <h3>칵테일 설명 ▼</h3>
                         <textarea placeholder="칵테일 설명을 적어주세요:)" spellCheck="false" className="signature-join-contents-2 signature-textarea" name='cocktailContents' value={joinSignature.cocktailContents} onChange={handleChange}></textarea>
                         <p style={{textAlign:'right', marginTop:'5px'}}>{joinSignature.cocktailContents.length}/200</p>
-                    </div>
-                    <div>
+                    </label>
+                    <label>
                         <h3>재료 정보 ▼</h3>
                         <div className="signature-ingredient-container">
                             <div><h3>재료1</h3></div>
@@ -122,12 +122,12 @@ function SignatureJoin() {
                             <div><input type="text" placeholder="단위" className="signature-ingredient-contents-1"></input></div>
                         </div>
                         <button className="signature-ingredient-contents-btn">재료추가</button>
-                    </div>
-                    <div>
+                    </label>
+                    <label>
                         <h3>레시피 정보 ▼</h3>
                         <textarea placeholder="레시피에 대한 설명을 적어주세요:)" spellCheck="false" className="signature-join-contents-2 signature-textarea" name='recipeContents' value={joinSignature.recipeContents} onChange={handleChange}></textarea>
                         <p style={{textAlign:'right', marginTop:'5px'}}>{joinSignature.recipeContents.length}/200</p>
-                    </div>
+                    </label>
                     <div>
                         <button type='submit' className="signature-contents-btn">업로드</button>
                     </div>
