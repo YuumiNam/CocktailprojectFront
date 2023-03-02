@@ -1,12 +1,15 @@
 /* eslint-disable */
 import React, { useState } from "react";
 import '../App.css';
+import axios from "axios";
 
 function Main() {
     const [banner, setBanner] = useState({
         title: '',
         file: [],
-      });
+    });
+    
+    console.log(banner.file);
 
     const handleChange = (e) => {
         const {name, value} = e.target;

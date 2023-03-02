@@ -52,7 +52,8 @@ function SignatureJoin(props) {
         formData.append('recipeContents', joinSignature.recipeContents);
         formData.append('engName', joinSignature.engName);
         joinSignature.files.forEach((file) => {
-        formData.append('files', file);
+            formData.append('name', file.name);
+            formData.append('path', file.webkitRelativePath);
         });
 
         // 엔드포인트에 JSON파일 전달

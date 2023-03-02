@@ -11,7 +11,7 @@ function CocktailDetail(props) {
     const {no} = useParams();
 
     const eachCocktail = cocktail.filter((cocktail) => cocktail.no == no);
-    // console.log(eachCocktail);
+    console.log(eachCocktail[0]);
 
     return (
         <>
@@ -40,7 +40,7 @@ function CocktailDetail(props) {
                             </div>
                         </div>
                         <div className="cocktail-banner-box-contentsbox">
-                            <div style={{color:'rgb(242, 92, 92)', fontWeight:'800'}}>#{(a.type == "alcohol") ? "알콜" : "논알콜"} #재료6개</div>
+                            <div style={{color:'rgb(242, 92, 92)', fontWeight:'800'}}>#{(a.type == "alcohol") ? "알콜" : "논알콜"} #재료{a.cocktailRecipes.length}개</div>
                             <div>
                                 <div className="cocktail-banner-box-contents-name">{a.name}</div>
                                 <div className="cocktail-banner-box-contents-engname">{a.engName}</div>
