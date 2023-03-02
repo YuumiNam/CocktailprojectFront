@@ -30,4 +30,12 @@ async function getIngredient(setIngredient) {
     setIngredient(ingredientData.data);
 }
 
-export {getCocktail, getIngredient, ScrollToTop};
+// 배너 JSON파일
+async function getBanner(setBanner) {
+    const bannerData = await axios.get(
+        '/banner'
+    );
+    setBanner(bannerData.data);
+}
+
+export {getCocktail, getIngredient, getBanner, ScrollToTop};
