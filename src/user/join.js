@@ -1,9 +1,11 @@
 /* eslint-disable */
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Join() {
+    const navigate = useNavigate();
+
     // JSON데이터를 저장할 객체
     const [joinMember,setJoinMember] = useState({
         id: '',  
@@ -25,7 +27,7 @@ function Join() {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleJoin = async (e) => {
         // form을 제출 했을때 새로고침되는 것을 방지
         e.preventDefault();
 
@@ -34,7 +36,7 @@ function Join() {
         formData.append('id', joinMember.id);
         formData.append('password', joinMember.password);
         formData.append('name', joinMember.name);
-        formData.append('nickname', joinMember.ninkname);
+        formData.append('nickname', joinMember.nickname);
         formData.append('birth', joinMember.birth);
         formData.append('phoneNumber', joinMember.phoneNumber);
         formData.append('gender', joinMember.gender);
@@ -46,9 +48,9 @@ function Join() {
                   'Content-Type': 'application/json'
                 }
               }); // http://192.168.0.4:8080/member/join
-            console.log(res.data);
+            navigate("/");
         } catch(err) {
-            console.log(err);
+            alert("회원가입 실패");
         }
 
         // 콘솔에 띄우기
@@ -60,7 +62,7 @@ function Join() {
             <div className="signature-join-contents">
                 <span>제목</span>
             </div>
-            <form className="signature-join-contents" onSubmit={handleSubmit}>
+            <form className="signature-join-contents" onSubmit={handleJoin}>
                 <label>
                     <h3>아이디 ▼</h3>
                     <input type="text" placeholder="아이디를 입력해주세요:)" className="signature-join-contents-2" name="id" value={joinMember.id} onChange={handleChange}></input>

@@ -1,10 +1,12 @@
 /* eslint-disable */
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SignatureJoin(props) {
     // ingredient 데이터 불러오기
     const ingredient = props.ingredient;
+    const navigate = useNavigate();
 
     // JSON데이터를 저장할 객체
     const [joinSignature,setJoinSignature] = useState({
@@ -12,7 +14,18 @@ function SignatureJoin(props) {
         engName:'',  
         cocktailContents: '',
         recipeContents: '',
-        files: [],
+        files: null,
+        amount: '',
+        unit: '',
+        // ingredient: [{
+        //     contents: "사탕수수에서 설탕을 만들고 난 찌꺼지인 당밀(Molasses)를 이용하여 증류시켜 만든 증류주로 골드 럼은 앰버 럼으로도 불리며 연한 갈색에 깊은 맛이 특징이다. 2년간 태운 오크통에서 숙성되며 카라멜향과 바닐라, 너츠 등의 향미를 냅니다.",
+        //     degree: 40,
+        //     engName: "Gold rum",
+        //     image: "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/057.%EA%B3%A8%EB%93%9C%EB%9F%BC.png",
+        //     name: "골드 럼",
+        //     no: 1,
+        //     type: "strong",
+        // }]
     });
 
     // input에 넣은 값을 항상 value로 업데이트 해주고 빈state객체에 저장해줌
@@ -52,18 +65,21 @@ function SignatureJoin(props) {
         formData.append('recipeContents', joinSignature.recipeContents);
         formData.append('engName', joinSignature.engName);
         joinSignature.files.forEach((file) => {
-            formData.append('name', file.name);
-            formData.append('path', file.webkitRelativePath);
+            formData.append('files', file);
         });
+        formData.append('amount', joinSignature.amount);
+        formData.append('unit', joinSignature.unit);
+        // formData.append('ingredient', joinSignature.ingredient);
 
         // 엔드포인트에 JSON파일 전달
         try {
-            const res = await axios.post('/signature/form', formData, {
+            await axios.post('/signature/form', formData, {
                 headers: {
                   'Content-Type': 'multipart/form-data'
                 }
               }); // http://192.168.0.4:8080/signature/form
-            console.log(res.data);
+            // console.log(res.data);
+            navigate("/signature");
         } catch(err) {
             console.log(err);
         }
@@ -87,7 +103,7 @@ function SignatureJoin(props) {
                         <h3>칵테일 사진 ▼</h3>
                         <div className="signature-picture-box signature-picture-box-grid-1" style={{border:'0px'}}>
                             <div className="signature-picture-box" style={{border:'3px solid'}}>
-                                <input type="file" name='files' multiple onChange={handleFileChange} style={{textAlign:'center', marginTop:'80px'}}></input>  
+                                <input type="file" name='files' defaultValue={joinSignature.files} multiple onChange={handleFileChange} style={{textAlign:'center', marginTop:'80px'}}></input>  
                             </div>
                             <div className="signature-picture-box signature-picture-box-grid-2">
                                 <div style={{gridRow:'2/3', textAlign:'center', fontWeight:'600'}}>추천사진1</div>
@@ -123,8 +139,8 @@ function SignatureJoin(props) {
                         <div className="signature-ingredient-container">
                             <div><h3>재료1</h3></div>
                             <div style={{gridColumn:'1/3'}}><input type="text" placeholder="재료 이름을 검색해주세요" className="signature-ingredient-contents-1" style={{width:'98.3%'}}></input></div>
-                            <div><input type="text" placeholder="용량" className="signature-ingredient-contents-1"></input></div>
-                            <div><input type="text" placeholder="단위" className="signature-ingredient-contents-1"></input></div>
+                            <div><input type="text" name='amount' value={joinSignature.amount} onChange={handleChange} placeholder="용량" className="signature-ingredient-contents-1"></input></div>
+                            <div><input type="text" name='unit' value={joinSignature.unit} onChange={handleChange} placeholder="단위" className="signature-ingredient-contents-1"></input></div>
                         </div>
                         <button className="signature-ingredient-contents-btn">재료추가</button>
                     </label>

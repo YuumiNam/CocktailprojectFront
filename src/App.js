@@ -15,12 +15,13 @@ import IngredientDetail from "./ingredient/IngredientDetail";
 import Board from "./board/board";
 import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
-import {getCocktail, getIngredient, ScrolToTop} from "./api";
+import {getBanner, getCocktail, getIngredient, ScrolToTop} from "./api";
 import SignatureJoin from "./signature/signatureJoin";
 
 function App() {
   const [cocktail, setCocktail] = useState([]);
   const [ingredient, setIngredient] = useState([]);
+  const [banner, setBanner] = useState([]);
 
   const location = useLocation();
 
@@ -34,11 +35,16 @@ function App() {
     getIngredient(setIngredient);
   },[])
 
+  // 배너 JSON파일
+  useEffect(() => {
+    getBanner(setBanner);
+  },[])
+
   return (
     <div className="App">
       {location.pathname !== '/join' && location.pathname !== '/login' && <Header /> }
       <Routes>
-        <Route path="/" element={<Main />}></Route>
+        <Route path="/" element={<Main banner={banner} />}></Route>
         <Route path="/join" element={<Join />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/cocktail" element={<Cocktail cocktail={cocktail} />}></Route>
