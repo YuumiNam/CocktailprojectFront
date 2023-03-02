@@ -50,8 +50,8 @@ function Main() {
                     )
                 })
             } */}
-            <img src={"/banner/view/3"} alt={"image"} />
-            <img src={"/banner/view/4"} alt={"image"} />
+            {/* <img src={"/banner/view/3"} alt={"image"} />
+            <img src={"/banner/view/4"} alt={"image"} /> */}
         </div>
         <form onSubmit={handleSubmit} style={{margin:'50px'}}>
             <input type="file" name="file" onChange={handleFileChange} />

@@ -7,19 +7,26 @@ import { useEffect } from "react";
 function Login() {
     const [id, setUserId] = useState('');
     const [password, setPassword] = useState('');
-
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        
-        const response = await axios.post('/member/login', { id, password });
-        const token = response.data.token;
-        
-        localStorage.setItem('token', token);
 
-        navigate("/");
-        console.log("토큰: " + token);
+        try {
+            const response = await axios.post('/member/login', { 
+                id: id, 
+                password: password });
+            const token = response.data.token;
+            
+            localStorage.setItem('token', token);
+            
+            navigate("/");
+            console.log("토큰: " + token);
+          } catch (error) {
+            console.error(error);
+            alert("로그인 실패!!");
+          }
+
     };
 
     return (
