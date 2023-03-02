@@ -2,48 +2,25 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Login() {
     const [id, setUserId] = useState('');
     const [password, setPassword] = useState('');
+
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
+        
+        const response = await axios.post('/member/login', { id, password });
+        const token = response.data.token;
+        
+        localStorage.setItem('token', token);
 
-        axios.post('/member/login', {
-            id: id,
-            password: password,
-        })
-        .then(res => {
-            const token = res.data.token; // 서버에서 보낸 토큰 값을 추출하여 변수에 저장
-            localStorage.setItem('authToken', token); // 로컬 스토리지에 토큰 값을 저장
-
-            console.log("토큰: " + token);
-            navigate("/");
-        })
-        .catch(err => {
-            console.log(err);
-            alert("로그인 실패")
-        });
+        navigate("/");
+        console.log("토큰: " + token);
     };
-
-    // const handleLogin = async (e) => {
-    //     e.preventDefault();
-
-    //     try {
-    //         const response = await axios.post('/member/login', {
-    //             id: userId,
-    //             password: password,
-    //         });
-
-    //         localStorage.setItem('token', response.data.token); // 로컬 스토리지에 토큰 값을 저장
-    //         window.location.href = '/'; // 로그인 성공 시, 메인페이지로 이동
-    //     } catch (err) {
-    //         alert("로그인 실패");
-    //         console.log(err);
-    //     }
-    // }
 
     return (
         <div className="signature-join-container">

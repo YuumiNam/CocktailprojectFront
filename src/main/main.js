@@ -3,11 +3,15 @@ import React, { useState } from "react";
 import '../App.css';
 import axios from "axios";
 
-function Main(props) {
+function Main() {
     const [title, setTitle] = useState("");
     const [file, setFile] = useState(null);
-    const banner = props.banner;
-    console.log(banner);
+    const [urls, setUrls] = useState([]);
+
+    // for(let i=0; i<file.length; i++) {
+    //     setUrls("/banner/view/"+ i)
+    // }
+    // console.log(urls);
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -39,11 +43,15 @@ function Main(props) {
     return(
         <>
         <div className='banner'>
-        {
-        banner.map((a, i) => (
-            <img key={i} src={a.filepath} alt={`Image ${i}`} />
-        ))
-        }
+            {/* {
+                urls.map(function(a,i) {
+                    return (
+                        <img src={a} alt={"Image"} key={i} />
+                    )
+                })
+            } */}
+            <img src={"/banner/view/3"} alt={"image"} />
+            <img src={"/banner/view/4"} alt={"image"} />
         </div>
         <form onSubmit={handleSubmit} style={{margin:'50px'}}>
             <input type="file" name="file" onChange={handleFileChange} />

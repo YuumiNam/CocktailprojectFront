@@ -14,7 +14,7 @@ function SignatureJoin(props) {
         engName:'',  
         cocktailContents: '',
         recipeContents: '',
-        files: null,
+        files: [],
         amount: '',
         unit: '',
         // ingredient: [{
