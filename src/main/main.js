@@ -6,7 +6,7 @@ import axios from "axios";
 function Main() {
     const [title, setTitle] = useState("");
     const [file, setFile] = useState(null);
-    const [urls, setUrls] = useState([]);
+    const [urls, setUrls] = useState(["/banner/view/1", "/banner/view/2", "/banner/view/3", "/banner/view/4"]);
 
     // for(let i=0; i<file.length; i++) {
     //     setUrls("/banner/view/"+ i)
@@ -40,17 +40,21 @@ function Main() {
         console.log(formData);
     }
 
+    console.log()
+
     return(
         <>
         <div className='banner'>
-            {/* {
+            {
                 urls.map(function(a,i) {
                     return (
                         <img src={a} alt={"Image"} key={i} />
                     )
                 })
-            } */}
-            {/* <img src={"/banner/view/3"} alt={"image"} />
+            }
+            {/* <img src={"/banner/view/1"} alt={"image"} />
+            <img src={"/banner/view/2"} alt={"image"} />
+            <img src={"/banner/view/3"} alt={"image"} />
             <img src={"/banner/view/4"} alt={"image"} /> */}
         </div>
         <form onSubmit={handleSubmit} style={{margin:'50px'}}>
