@@ -14,7 +14,7 @@ function Login() {
 
         try {
             const response = await axios.post('/member/login', { 
-                id: id, 
+                id: id,
                 password: password });
             const token = response.data.token;
             
@@ -22,6 +22,7 @@ function Login() {
             
             navigate("/");
             console.log("토큰: " + token);
+            console.log("헤더: " + response.headers);
           } catch (error) {
             console.error(error);
             alert("로그인 실패!!");

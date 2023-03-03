@@ -45,13 +45,13 @@ function Main() {
     return(
         <>
         <div className='banner'>
-            {
+            {/* {
                 urls.map(function(a,i) {
                     return (
                         <img src={a} alt={"Image"} key={i} />
                     )
                 })
-            }
+            } */}
             {/* <img src={"/banner/view/1"} alt={"image"} />
             <img src={"/banner/view/2"} alt={"image"} />
             <img src={"/banner/view/3"} alt={"image"} />
