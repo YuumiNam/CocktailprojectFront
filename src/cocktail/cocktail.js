@@ -11,6 +11,7 @@ function Cocktail(props) {
     const cocktail = props.cocktail;
     // console.log(cocktail);
 
+    
     // 필터링 할 칵테일데이터(copy)
     const [eachCocktail, setEachCocktail] = useState([]);
 
