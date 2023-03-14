@@ -1,62 +1,131 @@
 /* eslint-disable */
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import './App.css';
-import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function Header() {
-    return (
-      <div className='header-container'>
-        <div style={{gridColumn:'1/6'}}>
-          <Link to="/">
-            <h1 style={{cursor:'pointer', fontSize:'40px'}}>로고</h1>
-          </Link>
-        </div>
-          
-        <div style={{display:'grid', gridTemplateColumns:'1fr 200px 110px 130px' , columnGap:'10px'}}>
-          <div style={{gridColumn:'2/3', paddingTop:'20px'}}>
-            <h3 style={{textAlign:'center'}}>로그인중</h3>
+function HeaderModal(props) {
+  const { isOpen, onClose } = props;
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal">
+      <div className="overlay" onClick={onClose}></div>
+      <div className="modal-container">
+        <span>모달</span>
+      </div>
+    </div>
+  )
+}
+
+function Header(props) {
+  const navigate = useNavigate();
+  const { setIsLoggedIn, isLoggedIn, user } = props;
+
+  const bannerLogo = process.env.PUBLIC_URL + '/project-logo.png';
+  const search = process.env.PUBLIC_URL + '/search.png';
+
+  const [selectedMenu, setSelectedMenu] = useState(''); // 현재 선택된 메뉴
+
+  const handleMenuClick = (menu) => {
+    setSelectedMenu(menu);
+  }
+  
+  const handleLogout = async (props) => {
+    try {
+      await axios.post('/member/logout', {}, {
+        headers: {
+          'Authorization': localStorage.getItem('token')
+        }
+      })
+
+      localStorage.removeItem('token');
+      // delete axios.defaults.headers.common['Authorization'];
+
+      setIsLoggedIn(false);
+      navigate('/');
+      alert("로그아웃 성공!");
+    } catch (error) {
+      console.log(error);
+      alert("로그아웃 실패!");
+    }
+  };
+
+  //검색
+  //검색자료 저장
+  const [inputValue, setInputValue] = useState("");
+
+  function onSubmit(event) {
+    event.preventDefault();
+    navigate(`/search/${inputValue}`);
+  }
+
+  function handleChange(event) {
+    setInputValue(event.target.value);
+  }
+
+  return (
+    <div className='header-container'>
+      <div style={{ gridColumn: '1/4' }}>
+        <Link to="/">
+          <img src={bannerLogo} alt="project-logo" />
+          {/* <h1>로고</h1> */}
+        </Link>
+      </div>
+      <div style={{ gridColumn: '5/6' }}></div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 200px 130px 150px', columnGap: '10px' }}>
+        {
+        isLoggedIn ? (
+          <div style={{ gridColumn: '3/4'}}>
+            <button className='login-btn' onClick={handleLogout}>{user} 님</button>
           </div>
-          
-          <Link to="/login" style={{gridColumn:'3/4'}}>
+        ) : (
+          <Link to="/login" style={{ gridColumn: '3/4' }}>
             <button className='login-btn'>로그인</button>
           </Link>
-          
-          <Link to="/join" style={{gridColumn:'4/5'}}>
-            <button className='login-btn'>회원가입</button>
-          </Link>
-        </div>
-
-        <Link to="/cocktail" className="header-menu-box">
-            <li className='header-menu'>칵테일</li>
-            <div className='header-animationbar'></div>
+        )
+        }
+        <Link to="/join" style={{ gridColumn: '4/5' }}>
+          <button className='login-btn'>회원가입</button>
         </Link>
-
-        <Link to="/ingredient" className="header-menu-box">
-            <li className='header-menu'>재료</li>
-            <div className="header-animationbar"></div>
-        </Link>
-
-        <Link to="/board" className="header-menu-box">
-            <li className='header-menu'>게시판</li>
-            <div className="header-animationbar"></div>
-        </Link>
-
-        <Link to="/signature" className="header-menu-box">
-            <li className='header-menu'>시그니처</li>
-            <div className="header-animationbar"></div>
-        </Link>
-
-        <Link to="/" className="header-menu-box">
-            <li className='header-menu'>클래스</li>
-            <div className="header-animationbar"></div>
-        </Link>
-        
-
-        <div style={{gridColumn:'6/7'}}>
-          <input className='header-search' placeholder='만들고 싶은 칵테일 또는 재료를 검색하세요 :)'></input>
-        </div>
       </div>
-    )
+
+      <Link to="/cocktail" className={`header-menu-box ${selectedMenu === 'cocktail' ? 'selected' : ''}`} onClick={() => handleMenuClick('cocktail')}>
+        <li className='header-menu'>칵테일</li>
+        <div className='header-animationbar'></div>
+      </Link>
+
+      <Link to="/ingredient" className={`header-menu-box ${selectedMenu === 'ingredient' ? 'selected' : ''}`} onClick={() => handleMenuClick('ingredient')}>
+        <li className='header-menu'>재료</li>
+        <div className="header-animationbar"></div>
+      </Link>
+
+      <Link to="/board" className={`header-menu-box ${selectedMenu === 'board' ? 'selected' : ''}`} onClick={() => handleMenuClick('board')}>
+        <li className='header-menu'>게시판</li>
+        <div className="header-animationbar"></div>
+      </Link>
+
+      <Link to="/signature" className={`header-menu-box ${selectedMenu === 'signature' ? 'selected' : ''}`} onClick={() => handleMenuClick('signature')}>
+        <li className='header-menu'>시그니처</li>
+        <div className="header-animationbar"></div>
+      </Link>
+
+      <Link to="/" className={`header-menu-box ${selectedMenu === 'class' ? 'selected' : ''}`} onClick={() => handleMenuClick('class')}>
+        <li className='header-menu'>클래스</li>
+        <div className="header-animationbar"></div>
+      </Link>
+
+
+      <div style={{ gridColumn: '6/7', position: 'relative' }}>
+        <img src={search} style={{ position: 'absolute', right: '5px', top: '4.5px', cursor: 'pointer' }}></img>
+        <form onSubmit={onSubmit}>
+          <input type="text" className='header-search' value={inputValue} onChange={handleChange} placeholder='만들고 싶은 칵테일 또는 재료를 검색하세요 :)'></input>
+        </form>
+      </div>
+    </div>
+  )
 }
 
 export default Header;
