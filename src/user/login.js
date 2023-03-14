@@ -2,9 +2,10 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
-function Login() {
+function Login(props) {
+    const setIsLoggedIn = props.setIsLoggedIn;
+
     const [id, setUserId] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -14,20 +15,24 @@ function Login() {
 
         try {
             const response = await axios.post('/member/login', { 
-                id: id,
+                id: id, 
                 password: password });
-            const token = response.data.token;
+            const accessToken = response.data.accessToken;
             
-            localStorage.setItem('token', token);
-            
+            localStorage.setItem('accessToken', accessToken); // 로그인 후 토큰을 localStorage에 저장!!
+            // if (response.status === 200) {
+            //     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; // 토큰을 헤더에 저장!!
+            // }
+            setIsLoggedIn(true);
+
             navigate("/");
-            console.log("토큰: " + token);
-            console.log("헤더: " + response.headers);
+            console.log("accessToken: " + accessToken);
+
+            alert("로그인 성공!!");
           } catch (error) {
             console.error(error);
             alert("로그인 실패!!");
-          }
-
+        }
     };
 
     return (
