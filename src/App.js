@@ -17,8 +17,10 @@ import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
 import { getCocktail, getIngredient, ScrolToTop, getBanner, getBoard, getSignature} from "./api";
 import SignatureJoin from "./signature/signatureJoin";
-import Map from "./map/map";
+import Map from "./map/KakaoMap";
 
+import Board01 from "./board/board01";
+import Board02 from "./board/board02";
 import BoardDetail from "./board/boardIn";
 import Search from "./search";
 import Writing from "./board/writing";
@@ -158,11 +160,14 @@ function App() {
             isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked}/>}></Route>
           <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
           <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
+
           <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} />}></Route>
           <Route path="/signature/:no" element={<SignatureDetail signature={signature} />}></Route>
           <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
-          {/* <Route path="/map" element={<Map />}></Route> */}
+          <Route path="/map" element={<Map />}></Route>
 
+          <Route path="/board01" element={<Board01 />}></Route>
+          <Route path="/board02" element={<Board02 />}></Route>
           <Route path="/board" element={<Board board={board} />}></Route>
           <Route path="/board/view/:no" element={<BoardDetail board={board} token={token} />}></Route>
           <Route path="/search/:Sdata" element={<Search cocktail={cocktail} ingredient={ingredient} />}></Route>
