@@ -30,6 +30,8 @@ import BoardRe from "./board/boardRe";
 
 
 function App() {
+  console.log("엔포: " + process.env.REACT_APP_ENDPOINT);
+
   // 서버에서 받아온 토큰
   const token = localStorage.getItem('accessToken');
 
@@ -96,7 +98,7 @@ function App() {
 
   // 로그인 한 유저정보 받아옴
   useEffect(() => {
-    axios.get('/member/info', {
+    axios.get(`${process.env.REACT_APP_ENDPOINT}/member/info`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -167,6 +169,7 @@ function App() {
           <Route path="/signature/:no" element={<SignatureDetail signature={signature} />}></Route>
           <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
           <Route path="/map" element={<Map />}></Route>
+
 
           <Route path="/board01" element={<Board01 />}></Route>
           <Route path="/board02" element={<Board02 />}></Route>
