@@ -59,6 +59,8 @@ function App() {
     phoneNumber: '',
     gender: '',
     likeCocktail: [],
+    profileImage: "",
+    role: "",
   });
 
   // 좋아요버튼, 최상위 컴포넌트에 빼둔 이유는 useEffect()에서 좋아요 클릭마다 실시간 렌더링을 하기위함
@@ -98,27 +100,31 @@ function App() {
 
   // 로그인 한 유저정보 받아옴
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_ENDPOINT}/member/info`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }).then(response => {
-      // 유저 정보를 처리
-      setUser({
-        name: response.data.name,
-        nickname: response.data.nickname,
-        id: response.data.id,
-        phoneNumber: response.data.phoneNumber,
-        gender: response.data.gender,
-        likeCocktail: response.data.likeCocktail,
-      })
-
-      console.log("로그인여부: " + isLoggedIn);
-    }).catch(error => {
-        // 에러를 처리
-        console.error(error);
-      });
-  }, [isLiked, token]);
+    if (isLoggedIn) {
+      axios.get(`${process.env.REACT_APP_ENDPOINT}/member/info`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => {
+        // 유저 정보를 처리
+        setUser({
+          name: response.data.name,
+          nickname: response.data.nickname,
+          id: response.data.id,
+          phoneNumber: response.data.phoneNumber,
+          gender: response.data.gender,
+          likeCocktail: response.data.likeCocktail,
+          profileImage: response.data.profileImage,
+          role: response.data.role,
+        })
+  
+        console.log("로그인여부: " + isLoggedIn);
+      }).catch(error => {
+          // 에러를 처리
+          console.error(error);
+        });
+    }
+  }, [isLiked, token, isLoggedIn]);
 
   // isLoggedIn 값이 변경될 때마다 localStorage에 저장
   useEffect(() => {
@@ -167,7 +173,7 @@ function App() {
 
           <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} />}></Route>
           <Route path="/signature/:no" element={<SignatureDetail signature={signature} />}></Route>
-          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
+          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} token={token} />}></Route>
           <Route path="/map" element={<Map />}></Route>
 
 
