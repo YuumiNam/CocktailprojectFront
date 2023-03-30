@@ -132,7 +132,7 @@ function App() {
           console.error(error);
         });
     }
-  }, [isLiked, token, isLoggedIn]);
+  }, [isLiked, token, isLoggedIn, signature]);
 
   // isLoggedIn 값이 변경될 때마다 localStorage에 저장
   useEffect(() => {
@@ -147,21 +147,21 @@ function App() {
   }, []);
 
   // 최상단 이동 버튼
-  // const buttonClick = () => {
-  //   window.scrollTo({ top: 0, behavior: 'smooth' });
-  // };
-  // const [yPosition, setYPosition] = useState(0);
+  const buttonClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  const [yPosition, setYPosition] = useState(0);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setYPosition(window.scrollY);
-  //   };
-  //   window.addEventListener('scroll', handleScroll);
+  useEffect(() => {
+    const handleScroll = () => {
+      setYPosition(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll);
 
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, [yPosition]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [yPosition]);
 
   return (
     <>
@@ -169,7 +169,7 @@ function App() {
         {!['/join', '/login', '/mypage'].includes(location.pathname) && 
           <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} user={user} removeToken={removeToken} token={token} />} 
         <Routes>
-          <Route path="/" element={<Main banner={banner} />}></Route>
+          <Route path="/" element={<Main />}></Route>
           <Route path="/join" element={<Join />}></Route>
           <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
           <Route path="/mypage" element={<MyPage user={user} setUser={setUser} banner={banner} setBanner={setBanner} member={member} token={token} />}></Route>
@@ -179,9 +179,9 @@ function App() {
           <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
           <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
 
-          <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} />}></Route>
+          <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} setSignature={setSignature} />}></Route>
           <Route path="/signature/:no" element={<SignatureDetail signature={signature} isLiked={isLiked} setIsLiked={setIsLiked} isLoggedIn={isLoggedIn} token={token} />}></Route>
-          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} token={token} />}></Route>
+          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} signature={signature} setSignature={setSignature} token={token} />}></Route>
           <Route path="/map" element={<Map token={token}
             isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked} />}></Route>
 
@@ -190,15 +190,15 @@ function App() {
           <Route path="/board03" element={<Board03 />}></Route>
 
           <Route path="/board" element={<Board board={board} />}></Route>
-          <Route path="/board/view/:no" element={<BoardDetail board={board} token={token} user={user}/>}></Route>
+          <Route path="/board/view/:no" element={<BoardDetail board={board} token={token} user={user} isLoggedIn={isLoggedIn} />}></Route>
           <Route path="/search/:Sdata" element={<Search cocktail={cocktail} ingredient={ingredient} />}></Route>
           <Route path='/writing' element={<Writing board={board} token={token} />} />
           <Route path='/board/update/:no' element={<BoardRe board={board} token={token}/>} />
         </Routes>
       </div>
-      {/* <button onClick={buttonClick}
+      <button onClick={buttonClick}
         style={{position:'fixed', padding:'5px 10px', right:'10px', bottom:'10px', borderRadius:'5px', 
-        backgroundColor:'rgb(216, 167, 7)', border:'0px', cursor:'pointer'}}>▲</button> */}
+        backgroundColor:'rgb(216, 167, 7)', border:'0px', cursor:'pointer'}}>▲</button>
     </>
   );
 }

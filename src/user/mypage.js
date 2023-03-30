@@ -159,11 +159,17 @@ function ControlBanner(props) {
     )
 }
 
-// 관리자의 마이페이지중 배너관리 (하위컴포넌트)
+// 관리자의 마이페이지중 유저관리 (하위컴포넌트)
 function ControlUser(props) { 
     const { member } = props;
 
-    console.log("###: " + member.name);
+    const [eachMember, setEachMember] = useState([]);
+
+    useEffect(() => {
+        setEachMember(eachMember);
+    }, [eachMember]);
+
+    console.log("###: " + eachMember);
 
     return (
         <>
@@ -180,13 +186,32 @@ function ControlUser(props) {
 
             {
                 member.map((a, i) => {
+                    const [status, setStatus] = useState(a.role);
+
+                    function handleUserChange() {
+                        const confirmed = window.confirm(`${a.name} 님의 상태를 변경하시겠습니까?`);
+
+                        axios.patch(`${process.env.REACT_APP_ENDPOINT}/member/status/${a.no}`)
+                            .then(() => "회원 상태관리 변경 성공")
+                            .catch(() => "회원 상태관리 변경 실패");
+
+                        if (confirmed) {
+                            const newRole = status === 'enuser' ? 'unuser' : 'enuser';
+                            setStatus(newRole);
+                        }
+                    }
+
                     return (
                         <>
-                        <div>&nbsp;</div>
-                        <div style={{cursor:'default'}}><h3>{i + 1}</h3></div>
-                        <div style={{cursor:'default'}}><h3>{a.name}</h3></div>
-                        <div style={{cursor:'default'}}><h3>상태</h3></div>
-                        <div><h3 style={{cursor:'pointer'}}>상태관리</h3></div>
+                            {a.role !== 'admin' && (<>
+                            <div>&nbsp;</div>
+                            <div style={{cursor:'default'}}><h3>{i + 1}</h3></div>
+                            <div style={{cursor:'default'}}><h3>{a.name}</h3></div>
+                            <div style={{cursor:'default'}}>
+                                <h3 style={{backgroundColor: status === 'unuser' ? 'rgb(242, 92, 92)' : 'rgb(216, 167, 7)', borderRadius:'10px'}}>{status}</h3>
+                            </div>
+                            <div><button className='signature-picture-button' onClick={handleUserChange} style={{width:'100px', height:'50px', cursor:'pointer'}}>상태관리</button></div>
+                            </>)}
                         </>
                     )
                 })
@@ -331,8 +356,6 @@ function MyPageFavorite(props) {
         setFavoriteSignature(user.likeSignature);
     }, []);
 
-    console.log("#: " + favoriteCocktail);
-    console.log("###: " + favoriteSignature);
 
     return (
         <div className="mypage-right">
@@ -372,9 +395,9 @@ function MyPageFavorite(props) {
                         return (
                             <Link to={`/signature/${a.no}`} key={i}>
                                 <div className="cocktail-box">
-                                    <img src={a.signature.signatureImages[0].url} width='280px' height='200px' style={{ borderRadius: '10px' }} alt="cocktail"></img>
-                                    <div className='cocktail-contents' style={{fontWeight: '800', padding: '10px 0px', backgroundColor:'rgba(224, 218, 201)'}}>{a.signature.name}</div>
-                                    <div className='cocktail-contents' style={{color: 'rgb(131, 131, 131)', fontSize: '12px', backgroundColor:'rgba(224, 218, 201)' }}>{a.signature.signatureContents}</div>
+                                    <img src={`${process.env.REACT_APP_ENDPOINT}${a.signature.signatureImages[0].path}`} width='280px' height='200px' style={{ borderRadius: '10px' }} alt="cocktail"></img>
+                                    <div className='cocktail-contents' style={{fontWeight: '800', padding: '10px 0px', backgroundColor:'rgba(224, 218, 201)'}}>{a.signature.cocktailName}</div>
+                                    <div className='cocktail-contents' style={{color: 'rgb(131, 131, 131)', fontSize: '12px', backgroundColor:'rgba(224, 218, 201)' }}>{a.signature.cocktailContents}</div>
                                 </div>
                             </Link>
                         )   

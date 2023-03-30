@@ -11,7 +11,7 @@ import { Link, useParams } from 'react-router-dom';
 function boardIn(props) {
     // 데이터 연결
     const boardNo = Number(useParams().no);
-    const token = props.token;
+    const { token, user, isLoggedIn } = props
 
     //데이터 받아오기(조회수 증가)
     const [Data, setData] = useState([]);
@@ -22,10 +22,14 @@ function boardIn(props) {
         const data = await response.json();
         return data;
     }
+    // 수정 삭제 권한 확인
+    const [authority, setAuthority] = useState(false);
+
     useEffect(() => {
         fetchData().then(data => {
             setData(data);
             setIsLoading(false);
+            setAuthority(data.member.name === user.name)
         });
     }, []);
     console.log(Data)
@@ -92,7 +96,6 @@ function boardIn(props) {
     const onRemove2 = (event, app) => {
         event.preventDefault();
         if (confirm("정말 삭제합니까?")) {
-            // fetch(`${process.env.REACT_APP_ENDPOINT}/board/view/${boardNo}/review/delete/${app.no}`, {
             fetch(`${process.env.REACT_APP_ENDPOINT}/board/view/${boardNo}/review/delete/${app.no}`, {
                 method: "DELETE"
             })
@@ -117,8 +120,6 @@ function boardIn(props) {
         return formattedDate;
     }
 
-    const isLoggedIn = props;
-
     // 좋아요 버튼 (false일때에는 하얀하트, true일때에는 빨간하트)
     const [isLiked, setIsLiked] = useState(false);
 
@@ -129,13 +130,13 @@ function boardIn(props) {
     const handleLikeClick = async (e) => {
         // 로그인 시에만 click이벤트 작동
         if (isLoggedIn) {
-            await axios.post(`${process.env.REACT_APP_ENDPOINT}/cocktail/like/${boardNo}`, {}, {
+            await axios.post(`${process.env.REACT_APP_ENDPOINT}/board/like/${boardNo}`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }).then(() => {
                 // Click이벤트 발생 시, 하트상태 반전을 위한 데이버를 서버에서 불러옴
-                axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/isliked/${boardNo}`, {
+                axios.get(`${process.env.REACT_APP_ENDPOINT}/board/isliked/${boardNo}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -154,7 +155,7 @@ function boardIn(props) {
             });
 
             // Click이벤트 발생 시, 실시간으로 숫자를 반영
-            axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/countliked/${boardNo}`)
+            axios.get(`${process.env.REACT_APP_ENDPOINT}/board/countliked/${boardNo}`)
                 .then((res) => {
                     const counted = res.data;
                     setCountLiked(counted);
@@ -171,7 +172,7 @@ function boardIn(props) {
 
     // 렌더링 할때마다, 예전에 좋아요 버튼 클릭했다면 ♥으로 고정, 안했다면 ♡으로 고정... 서버에서 데이터를 불러옴
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/isliked/${boardNo}`, {
+        axios.get(`${process.env.REACT_APP_ENDPOINT}/board/isliked/${boardNo}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -187,7 +188,7 @@ function boardIn(props) {
 
     // 렌더링 할때마다, 실시간으로 숫자를 반영
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/countliked/${boardNo}`)
+        axios.get(`${process.env.REACT_APP_ENDPOINT}/board/countliked/${boardNo}`)
             .then((res) => {
                 const counted = res.data;
                 setCountLiked(counted);
@@ -197,6 +198,7 @@ function boardIn(props) {
                 console.log(err)
             })
     }, [countLiked]);
+
     return (
         <>
             <div className="board-container">
@@ -208,15 +210,19 @@ function boardIn(props) {
                         <div>{Data.title}</div>
                     </div>
                     <div className="board-eachcontents-profilepicture" style={{ gridRow: '2/5' }}>
-                        {/* <img src=""></img> */}
+                        <img style={{ width: "100px", height: "100px" }} src={`${process.env.REACT_APP_ENDPOINT}${Data?.member?.profileImage || ""}`} alt={Data?.member?.nickname || ""}></img>
                     </div>
                     <div style={{ gridRow: '3/4' }}>{Data?.member?.nickname || ""}</div>
                     <div style={{ gridRow: '3/4' }}>{formatDate(Data.createdDate)}</div>
                     <div style={{ gridColumn: '2/8' }}>&nbsp;</div>
                     <div style={{ gridRow: '3/4', gridColumn: '4/5' }}>{Data.hit}</div>
                     <div style={{ gridRow: '3/4', gridColumn: '5/6' }}>{Data.likes}</div>
-                    <button style={{ gridRow: '3/4', gridColumn: '7/8' }}><Link to={`/board/update/${Data.no}`}>수정</Link></button>
-                    <button style={{ gridRow: '3/4', gridColumn: '8/9' }} onClick={onRemove}>삭제</button>
+                    {authority === true && (
+                        <>
+                            <button style={{ gridRow: '3/4', gridColumn: '7/8' }}><Link to={`/board/update/${Data.no}`}>수정</Link></button>
+                            <button style={{ gridRow: '3/4', gridColumn: '8/9' }} onClick={onRemove}>삭제</button>
+                        </>
+                    )}
                 </div>
                 <div style={{ border: '1px solid black', marginBottom: '40px', marginTop: '20px' }}></div>
 
@@ -227,11 +233,11 @@ function boardIn(props) {
                         <div>
                             {Data.imgs.map((app, i) => {
                                 if (i < 5) {
-                                return (
-                                    <div style={{ textAlign: "center" }}>
-                                        <img src={`${process.env.REACT_APP_ENDPOINT}${app.path}`} key={i} alt={app.name} style={{ height: "200px", width: "auto" }}></img>
-                                    </div>
-                                )
+                                    return (
+                                        <div style={{ textAlign: "center" }}>
+                                            <img src={`${process.env.REACT_APP_ENDPOINT}${app.path}`} key={i} alt={app.name} style={{ maxWidth: "2000px", maxHeight: "200px" }}></img>
+                                        </div>
+                                    )
                                 }
                             })}
                         </div>
@@ -241,10 +247,10 @@ function boardIn(props) {
                 <div style={{ fontSize: '20px' }} dangerouslySetInnerHTML={{ __html: Data.contents }}></div>
 
                 <div className="board-eachcontents-button">
-                    <Link to="/board01" style={{ gridColumn: "2/3", margin: 'auto' }}>
-                        <button><Link to={`/board`}>목록</Link></button>
+                    <Link to="/board" style={{ gridColumn: "2/3", margin: 'auto' }}>
+                        <button>목록</button>
                     </Link>
-                    <div className="board-eachcontents-favorite" onClick={handleLikeClick}>
+                    <div className="board-eachcontents-favorite" onClick={handleLikeClick} style={{ zIndex: "5" }}>
                         <div className="board-eachcontents-favorite-contents">
                             {isLiked ? '♥' : '♡'}
                         </div>
@@ -252,7 +258,7 @@ function boardIn(props) {
                     </div>
                 </div>
                 {/* 댓글창 */}
-                <div>
+                <div style={{ minHeight: "100px" }}>
                     <p className="text-center">
                         <h4>댓글</h4>
                     </p>
@@ -262,18 +268,21 @@ function boardIn(props) {
                             <button style={{ width: "10%", height: "40px" }}>작성</button>
                         </form>
                     </div>
+                </div>
+                <div>
                     {/* 댓글창 view */}
-                    <table className='border text-center' style={{ margin: "auto" }}>
+                    <table style={{ margin: "auto" }}>
                         {Data && Data.reviews &&
                             <tbody>
                                 {Data.reviews.map(app => {
                                     return (
-                                        <tr>
-                                            <td>{app.no}</td>
-                                            <td>{app.contents}</td>
-                                            <td>{app.createdDate}</td>
+                                        <tr style={{ fontSize: "25px", display: "flex" }}>
+                                            <td style={{ textAlign: "left", width: "50px" }}>{app.no}</td>
+                                            <td style={{ width: "500px" }}>{app.createdDate}</td>
+                                            <td style={{ width: "500px" }}>{app.contents}</td>
                                             <td style={{ width: "10%" }}>
-                                                <button onClick={(e) => onRemove2(e, app)}>삭제</button>
+                                                <button onClick={(e) => onRemove2(e, app)} style={{ width: "100px", height: "50px" }}>삭제</button>
+
                                             </td>
                                         </tr>
                                     )
